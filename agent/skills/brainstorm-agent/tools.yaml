@@ -1,0 +1,14 @@
+# Tools required by the Brainstorm Agent skill
+
+tools:
+  - name: knowledge_search
+    description: Look up agent architecture concepts to inform the design
+    required: true
+
+  - name: write_output
+    description: Produce the agent design summary
+    required: true
+
+  - name: read_file
+    description: Read the workshop design template for structure reference
+    required: true

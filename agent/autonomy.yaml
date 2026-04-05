@@ -1,0 +1,32 @@
+# Podium — Autonomy Configuration
+#
+# Controls how much the agent decides without asking.
+# Start at level 1. Earn your way up.
+#
+# Level 1: Ask before every action (training wheels)
+#   - The agent explains what it wants to do and waits for your OK
+#   - Best for: first-time users, unfamiliar tasks, high-stakes work
+#
+# Level 2: Act on routine, ask on judgment calls (assisted)
+#   - The agent handles straightforward tasks independently
+#   - Asks permission for ambiguous decisions or new territory
+#   - Best for: familiar tasks, moderate stakes, building trust
+#
+# Level 3: Act autonomously, surface only blockers (conductor mode)
+#   - The agent runs the full loop on its own
+#   - Only interrupts when it's genuinely stuck or needs a decision
+#   - Best for: well-tested workflows, low stakes, trusted domains
+
+level: 1
+
+# Per-skill overrides
+# Uncomment and adjust to give specific skills more or less autonomy.
+# overrides:
+#   research: 2
+#   explain: 2
+#   plan: 1
+#   brainstorm-agent: 1  # Always interactive — override has no effect
+
+# Autonomy progression
+# Track your own comfort level. When you're ready, bump the level.
+# There's no rush. The agent works well at every level.
