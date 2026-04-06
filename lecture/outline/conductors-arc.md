@@ -1,5 +1,10 @@
 # The Conductor's Arc — Lecture Outline
 
+**Session 4** of "Applied AI Tools for Psychologists" (Dr. Yoel Shilat, Reichman University)
+**Prerequisite knowledge:** LLM fundamentals, prompt engineering, research tools (sessions 1-3)
+**Language:** Hebrew primary, English for technical terms
+**See:** `../references/course-context.md` for full context on what students know
+
 ## At a Glance
 
 | # | Section | Time | Mode |

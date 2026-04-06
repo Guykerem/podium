@@ -4,7 +4,7 @@
 
 Podium is three things in one:
 
-1. **A lecture** — a 90-minute guest session on AI agents for psychology students at Reichman University
+1. **A lecture** — session 4 of a 12-session course ("Applied AI Tools for Psychologists") at Reichman University. 90-minute guest lecture on AI agents for B.A. psychology students. Students have had 3 prior sessions covering LLM fundamentals, prompt engineering, and research tools.
 2. **A platform** — a GUI that visualizes and configures a personal AI tutor agent (knowledge, tools, identity, learning)
 3. **A gift** — a repo students clone, use, and build on across their course
 
@@ -147,9 +147,11 @@ Built on the Ally Hyper Agent boilerplate. A GUI that visualizes and configures 
 - [ ] Which specific Collier clip sections for opening vs. close?
 - [ ] Which skills and knowledge domains offer the best value + learning combination?
 - [ ] How much of the GUI needs to be functional vs. representative for the demo?
-- [ ] Talk date and logistics with the professor
-- [ ] Hebrew or English? Bilingual slides?
-- [ ] How does Podium evolve lesson-to-lesson in the course?
+- [ ] Talk date and logistics with Dr. Yoel Shilat
+- [x] Hebrew primary, English for technical terms (matches course convention)
+- [ ] How does Podium evolve lesson-to-lesson across remaining 8 sessions?
+- [ ] Coordinate with session 3 (research tools) to ensure no overlap
+- [ ] Final project alignment — how explicitly do we position Podium as a foundation for their semester project?
 
 ---
 
@@ -161,3 +163,7 @@ Built on the Ally Hyper Agent boilerplate. A GUI that visualizes and configures 
 - Anthropic model behavior / emotional patterns research
 - Ally Hyper Agent boilerplate: ~/git/ally/src/vitals/
 - OpenClaw: open-source agent framework
+- Course syllabus: "Applied AI Tools for Psychologists" — Dr. Yoel Shilat, Reichman 2026
+- Course reading list: Bastani et al. (2025), Eager (2024), Kosmyna et al. (2025), Yan et al. (2024)
+- Internal: `lecture/references/course-context.md` — what students know by session 4
+- Internal: `lecture/references/student-profiles.md` — student AI usage patterns
