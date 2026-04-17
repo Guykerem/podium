@@ -1,0 +1,50 @@
+# Personal Assistant — Scheduled Jobs
+# Define recurring tasks the agent performs on a timer.
+# Uses cron syntax: minute hour day month weekday
+#
+# All scheduled jobs honor quiet hours defined in memory/preferences/.
+# An "autonomy_override: 1" forces an approval prompt even if the user
+# has set the role to a higher autonomy level.
+
+jobs:
+  - name: heartbeat
+    description: Lightweight observation pass — refresh calendar, unread counts, overdue tasks. Writes to ambient log, never interrupts.
+    cron: "*/30 * * * *"          # every 30 minutes
+    skill: observe
+    autonomy_override: 3           # ambient only, no user-facing output
+
+  - name: check-in-sweep
+    description: Evaluate whether any signal has crossed the importance × time-sensitivity × confidence threshold and deserves an attention-level nudge.
+    cron: "0 */3 * * *"            # every 3 hours
+    skill: check-in
+    autonomy_override: 2
+
+  - name: morning-brief
+    description: Generate the daily brief — needs attention, today's 3 priorities, calendar with prep notes, inbox highlights, tasks due. Delivered via preferred morning channel.
+    cron: "30 7 * * 1-5"           # 07:30 weekdays (user can override time in preferences)
+    skill: daily-brief
+    autonomy_override: 2
+
+  - name: meeting-prep
+    description: Check the next 60 minutes of calendar. For each meeting, pull attendee context, past thread, open action items, and produce a one-screen brief.
+    cron: "*/15 * * * *"           # every 15 minutes (skill self-gates to T-60 windows)
+    skill: prep-meeting
+    autonomy_override: 2
+
+  - name: weekly-relationship-review
+    description: Scan contacts against cadence targets. Surface dormant relationships with a suggested reason and tone for warm reconnect. No auto-send.
+    cron: "0 10 * * 1"             # Mondays at 10:00
+    skill: relationship-coach
+    autonomy_override: 1
+
+  - name: weekly-time-review
+    description: Reflect on the prior week — time spent vs. stated priorities, protected deep work, overcommitment flags, axioms that need revisiting.
+    cron: "0 16 * * 5"             # Fridays at 16:00
+    skill: time-advisor
+    autonomy_override: 1
+
+  - name: evening-shutdown
+    description: Gentle shutdown ritual — clear inbox triage state, confirm tomorrow's top-3, note any unresolved threads to surface in tomorrow's brief.
+    cron: "0 18 * * 1-5"           # 18:00 weekdays
+    skill: daily-brief
+    autonomy_override: 1
