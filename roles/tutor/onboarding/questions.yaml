@@ -1,0 +1,144 @@
+# Private Tutor — Onboarding Questions
+# Asked on first interaction to personalize the learning experience.
+
+questions:
+  - id: domains
+    type: multi_select_open
+    prompt: >
+      What would you like me to tutor you on? You can pick broad areas (e.g.
+      "machine learning," "Spanish," "organic chemistry") or narrow targets
+      (e.g. "transformers," "Spanish past tenses," "the citric acid cycle").
+      List one or several.
+    notes: Seeds research-loop domains and creates the initial learning plan nodes.
+
+  - id: goal
+    type: open
+    prompt: >
+      What's the goal? Why do you want to learn this, and what does "done"
+      look like for you? (e.g. pass an exam, contribute to a project,
+      understand a paper, hold a conversation, switch careers)
+    notes: Drives milestone design and success-criteria weighting.
+
+  - id: deadline
+    type: open
+    prompt: >
+      Is there a deadline? If yes, when and what's at stake? If there's no
+      deadline, what cadence feels right — 15 minutes a day, a few hours a
+      week, intensive sprints?
+
+  - id: starting_level
+    type: multiple_choice
+    prompt: >
+      How would you describe your current level in this domain?
+    options:
+      - label: absolute-beginner
+        description: "New to it. I'd need to be told what the basic vocabulary means."
+      - label: exposed
+        description: "I've read or heard about it, but I can't do anything with it yet."
+      - label: working
+        description: "I can use some of it, but I have obvious gaps."
+      - label: intermediate
+        description: "I'm functional; I'm here to sharpen and fill gaps."
+      - label: advanced
+        description: "I know a lot; I want depth, edge cases, and research frontiers."
+
+  - id: prior_knowledge
+    type: open
+    prompt: >
+      What do you already know that's relevant? Any courses, books, projects,
+      or hands-on experience. This helps me calibrate where to start and what
+      to skip.
+
+  - id: learning_format
+    type: multi_select
+    prompt: >
+      Which learning formats work best for you? Pick any that apply —
+      I'll prioritize them and measure which actually stick for you.
+    options:
+      - label: reading-written-synthesis
+        description: "Explainers, summaries, notes"
+      - label: worked-examples
+        description: "Fully worked problems I can study then reproduce"
+      - label: socratic-dialogue
+        description: "You ask questions, I reason through"
+      - label: quizzes
+        description: "Active recall — short, frequent retrieval practice"
+      - label: podcasts-audio
+        description: "Audio overviews I can listen to passively"
+      - label: visual-diagrams
+        description: "Concept maps, flowcharts, visualizations"
+      - label: projects
+        description: "Build or do something with the material"
+
+  - id: session_shape
+    type: multiple_choice
+    prompt: >
+      When and how long can you focus? I'll time sessions around you.
+    options:
+      - label: micro
+        description: "5-10 min bursts scattered through the day"
+      - label: short
+        description: "15-25 min once or twice a day"
+      - label: pomodoro
+        description: "25-50 min focused blocks"
+      - label: long
+        description: "60-90 min deep sessions a few times a week"
+
+  - id: preferred_time
+    type: open
+    prompt: >
+      What times of day are best? (e.g. "mornings 7-9", "after 9pm", "lunch
+      breaks", "I have no rhythm, just surprise me")
+
+  - id: challenge_tolerance
+    type: multiple_choice
+    prompt: >
+      How much productive struggle do you want? Harder problems produce
+      better long-term retention, but feel worse in the moment.
+    options:
+      - label: gentle
+        description: "Ease me in; I need to build confidence first"
+      - label: balanced
+        description: "Mix of wins and stretches (recommended)"
+      - label: spicy
+        description: "Push me. I'd rather fail and learn than coast"
+
+  - id: feedback_preference
+    type: multiple_choice
+    prompt: >
+      When I get a wrong answer from you, how do you want me to respond?
+    options:
+      - label: blunt
+        description: "Just tell me it's wrong and explain why"
+      - label: hints
+        description: "Give me graduated hints before revealing the answer"
+      - label: socratic
+        description: "Ask me a question that surfaces where I went wrong"
+
+  - id: channels
+    type: multi_select
+    prompt: >
+      Where do you want me to reach you? I can deliver quizzes, podcasts,
+      and summaries through different channels.
+    options:
+      - label: cli
+        description: "Here, in this terminal / chat"
+      - label: email
+        description: "Digests, podcasts, weekly reports"
+      - label: calendar
+        description: "Drop scheduled sessions onto my calendar"
+      - label: mobile-notification
+        description: "Push notifications for review nudges"
+
+  - id: notebooklm_connected
+    type: yes_no
+    prompt: >
+      Do you have a Google account for NotebookLM? If yes, I can push curated
+      sources there and generate Audio Overview podcasts for you. If no, I'll
+      skip that workflow and use written synthesis instead.
+
+  - id: sensitive_topics
+    type: open
+    prompt: >
+      Any topics, sources, or styles I should avoid? (e.g. "don't use
+      religious examples", "no sports metaphors", "avoid medical advice")

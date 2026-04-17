@@ -1,0 +1,25 @@
+# Mastery memory lives here.
+#
+# One file per concept, named after a stable slug of the concept id.
+# Schema (YAML front-matter + notes):
+#
+# ---
+# concept_id: <slug>
+# domain: <domain-slug>
+# path_node: <learning-plan-node-id>
+# prerequisites: [<concept_id>, ...]
+# bloom_reached: remember | understand | apply | analyze | evaluate | create
+# mastery: 0.0-1.0          # latest estimated mastery
+# confidence_band: low | medium | high
+# stability: <float>        # FSRS stability — how long before memory fades
+# difficulty: <float>       # FSRS difficulty (0-10)
+# retrievability: 0.0-1.0   # probability of correct recall now
+# last_review: <ISO-8601>
+# next_review: <ISO-8601>
+# review_history:
+#   - {ts: ..., rating: 1-4, response_ms: <int>, format: quiz|dialogue}
+# misconceptions: [<free-text>]
+# ---
+#
+# Free-form notes below the frontmatter — what the student has asked, where
+# they got stuck, which analogies landed, which didn't.

@@ -1,0 +1,31 @@
+# Curated sources live here.
+#
+# One file per source, named <domain>/<stable-hash>.md.
+# Schema:
+#
+# ---
+# source_id: <sha256-of-url>
+# url: <canonical-url>
+# title: <string>
+# author: <string>
+# published: <YYYY-MM-DD>
+# retrieved: <ISO-8601>
+# domain: <domain-slug>
+# type: paper | article | video | podcast | book | tutorial | documentation
+# quality:
+#   craap:
+#     currency: 0-5
+#     relevance: 0-5
+#     authority: 0-5
+#     accuracy: 0-5
+#     purpose: 0-5
+#   overall: 0-5          # average; sources < min_quality_score are archived
+# tags: [<concept_id>, ...]
+# dedup_fingerprint: <sha256 of normalized content>
+# consumed_by_student: true | false
+# pushed_to_notebooklm: <notebook_id | null>
+# ---
+#
+# Summary + key claims below, with inline citations back to the source.
+#
+# Duplicates are detected via fingerprint and merged rather than re-stored.
