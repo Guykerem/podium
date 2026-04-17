@@ -1,0 +1,33 @@
+# Content Creator — Scheduled Jobs
+# Primarily reactive — the creator drives. Light nudges keep cadence.
+# Uses cron syntax: minute hour day month weekday
+
+jobs:
+  - name: weekly-capture-check
+    description: >
+      Ask the creator what they've captured this week — voice notes, clips,
+      screenshots, half-written thoughts. Triage into potential content.
+    cron: "0 10 * * 5"  # Friday 10:00 AM
+    skill: triage-captures
+    autonomy_override: 1  # Always ask before acting
+
+  - name: monthly-content-review
+    description: >
+      Review last 30 days of published content — what hit, what flopped, what
+      patterns emerged. Propose 2-3 experiments for next month.
+    cron: "0 10 1 * *"  # 1st of month, 10:00 AM
+    skill: review-performance
+    autonomy_override: 1
+
+  - name: stale-draft-nudge
+    description: >
+      Surface drafts or captures sitting untouched for 10+ days. Ask whether
+      to finish, repurpose, or archive.
+    cron: "0 14 * * 2"  # Tuesday 2:00 PM
+    skill: triage-captures
+    autonomy_override: 1
+
+# Notes:
+# - The creator agent is mostly reactive — triggered by new captures or requests.
+# - All scheduled jobs run at autonomy level 1: propose, never auto-send.
+# - Publishing is NEVER scheduled autonomously. The creator ships manually.
