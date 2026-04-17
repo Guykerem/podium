@@ -1,0 +1,23 @@
+# Model provider configuration
+# To switch providers, change default_provider to one of: openai, anthropic, ollama, openrouter
+# API keys use ${ENV_VAR} syntax and are resolved from environment variables at runtime.
+
+default_provider: anthropic
+
+providers:
+  openai:
+    model: gpt-4o
+    api_key: ${OPENAI_API_KEY}
+
+  anthropic:
+    model: claude-sonnet-4-20250514
+    api_key: ${ANTHROPIC_API_KEY}
+
+  ollama:
+    model: llama3
+    api_base: http://localhost:11434
+
+  openrouter:
+    model: anthropic/claude-sonnet-4-20250514
+    api_key: ${OPENROUTER_API_KEY}
+    api_base: https://openrouter.ai/api/v1

@@ -1,0 +1,18 @@
+# I/O channel configuration
+# Enable channels by setting enabled: true and providing required credentials.
+
+default_channel: cli
+
+channels:
+  cli:
+    enabled: true
+
+  telegram:
+    enabled: false
+    bot_token: ${TELEGRAM_BOT_TOKEN}
+
+  webhook:
+    enabled: false
+    host: "0.0.0.0"
+    port: 8080
+    path: /webhook

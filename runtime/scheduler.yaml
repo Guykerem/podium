@@ -1,0 +1,9 @@
+# Scheduler runtime configuration
+
+enabled: false
+timezone: UTC
+heartbeat_interval: 1800  # seconds
+
+persistence:
+  type: file
+  path: runtime/scheduler_jobs.json
