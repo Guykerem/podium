@@ -1,0 +1,13 @@
+# Agent Architect — Scheduled Jobs
+# Define recurring tasks the agent performs on a timer.
+# Uses cron syntax: minute hour day month weekday
+
+jobs: []
+
+# Example: weekly progress check
+# jobs:
+#   - name: weekly-progress-review
+#     description: Review the user's learning progress and suggest next steps
+#     cron: "0 10 * * 1"  # Every Monday at 10:00 AM
+#     skill: teach-concepts
+#     autonomy_override: 1  # Always ask before acting on scheduled tasks

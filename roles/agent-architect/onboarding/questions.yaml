@@ -1,0 +1,26 @@
+# Agent Architect — Onboarding Questions
+# Asked on first interaction to personalize the experience.
+
+questions:
+  - id: experience_level
+    type: multiple_choice
+    prompt: >
+      How much experience do you have with AI tools?
+    options:
+      - label: beginner
+        description: "I've barely used AI tools, or never"
+      - label: some
+        description: "I've used ChatGPT or similar, but nothing technical"
+      - label: technical
+        description: "I've built things with AI, written prompts, or used APIs"
+
+  - id: curiosity
+    type: open
+    prompt: >
+      What are you most curious about when it comes to AI agents?
+
+  - id: goal
+    type: open
+    prompt: >
+      What would make this time well spent for you? What do you want to
+      walk away with?
