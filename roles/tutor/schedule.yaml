@@ -1,0 +1,79 @@
+# Private Tutor — Scheduled Jobs
+# Cron syntax: minute hour day month weekday
+
+jobs:
+  # Research sweep — every 6 hours, scans configured domains for new material,
+  # curates and deduplicates, updates memory/sources/.
+  - name: research-sweep
+    description: >
+      Scan RSS feeds, arXiv, YouTube channels, and configured web sources
+      for new material in the student's active domains. Score with CRAAP,
+      dedupe against existing sources, tag to concepts, and archive anything
+      below min_quality_score.
+    cron: "0 */6 * * *"
+    skill: research-loop
+    autonomy_override: 2   # act unless low-confidence material; surface for review
+
+  # Spaced-review queue — twice a day, computes which concepts are due for
+  # retrieval practice based on the FSRS model.
+  - name: review-queue-build
+    description: >
+      Walk memory/mastery/, find concepts with retrievability < review_threshold
+      and next_review <= now. Build a prioritized queue for the next session.
+    cron: "0 8,18 * * *"
+    skill: learning-plan
+    autonomy_override: 3   # pure internal calculation, no user-facing action
+
+  # Quiz — three mornings a week, generate a targeted practice set from the
+  # review queue + one new-concept stretch item.
+  - name: quiz-prompt
+    description: >
+      Generate a 5-10 item quiz from the current review queue, varied across
+      Bloom's levels, and offer it to the student in their preferred channel.
+    cron: "0 9 * * 1,3,5"
+    skill: quiz
+    autonomy_override: 1   # always ask before sending, quizzes are intrusive
+
+  # Weekly plan review — Sundays, synthesize the week's progress and adjust
+  # the learning plan.
+  - name: weekly-plan-review
+    description: >
+      Summarize the week's mastery deltas, engagement patterns, and flagged
+      gaps. Propose plan adjustments for the coming week.
+    cron: "0 18 * * 0"
+    skill: assess-progress
+    autonomy_override: 1
+
+  # Podcast push — when >= 3 curated sources accumulate on a priority concept
+  # (i.e., a concept with a gap or low mastery), bundle and push to NotebookLM.
+  # Runs every 12 hours; triggers conditionally.
+  - name: podcast-push
+    description: >
+      Check accumulated sources tagged to gap concepts. If a bundle meets the
+      threshold, push to NotebookLM for podcast generation and queue the
+      output for the student.
+    cron: "0 7,19 * * *"
+    skill: podcast-pipeline
+    autonomy_override: 2
+
+  # Monthly report — first of the month, a deeper reflective summary with
+  # trend analysis and path revision suggestions.
+  - name: monthly-report
+    description: >
+      Generate a detailed mastery + engagement report covering the month.
+      Identify long-running gaps, retention patterns, and propose plan
+      changes the student may want to approve.
+    cron: "0 10 1 * *"
+    skill: assess-progress
+    autonomy_override: 1
+
+  # Style-preference sync — nightly, updates inferred preferences from the
+  # learning log.
+  - name: style-sync
+    description: >
+      Analyze the last 24h of learning log entries. Update
+      memory/style-preferences/observed.md with retention-by-format deltas,
+      engagement windows, and chunk-size preferences.
+    cron: "0 2 * * *"
+    skill: adapt-style
+    autonomy_override: 3

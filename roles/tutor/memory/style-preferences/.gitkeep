@@ -1,0 +1,13 @@
+# Style-preferences memory lives here.
+#
+# Tracks how the student prefers to learn — observed, not just declared.
+#
+# Files:
+#   profile.md       — stated preferences from onboarding
+#   observed.md      — patterns the agent has inferred (retention by format,
+#                      time-of-day performance, session length sweet spot,
+#                      engagement triggers)
+#   corrections.md   — explicit overrides ("don't use cooking analogies",
+#                      "I learn better with code than prose")
+#
+# Observed preferences update after every session via adapt-style skill.

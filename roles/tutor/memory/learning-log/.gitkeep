@@ -1,0 +1,27 @@
+# Learning log lives here.
+#
+# Append-only record of every learning interaction.
+#
+# File naming: YYYY-MM-DD-<session-slug>.md
+# Schema:
+#
+# ---
+# session_id: <uuid>
+# started_at: <ISO-8601>
+# ended_at: <ISO-8601>
+# domain: <domain-slug>
+# concepts_touched: [<concept_id>, ...]
+# format: dialogue | quiz | reading | podcast-review | synthesis
+# mode: socratic | didactic | exploratory
+# outcome: advanced | reinforced | stuck | abandoned
+# signals:
+#   avg_response_ms: <int>
+#   hesitation_events: <int>
+#   corrections_asked: <int>
+#   follow_up_questions: <int>
+#   self-reported-mood: 1-5
+# ---
+#
+# Full transcript or summary below.
+#
+# This log is the source of truth for assess-progress and adapt-style skills.
