@@ -1,0 +1,120 @@
+# Onboarding Questions — Generic Flow
+# Executed by the agent architect on first interaction.
+# Role-specific questions are loaded dynamically in Phase 5.
+
+phases:
+
+  # Phase 1: Welcome
+  - id: welcome
+    type: message
+    content: >
+      Hi! I'm an agent architect — I help you understand and build AI agents.
+
+      This repo is both the lesson and the tool. Every folder maps to a part
+      of how agents work. By the time we're done here, you'll have a working
+      agent configured to your needs — and you'll understand why each piece exists.
+
+  # Phase 2: Discover Intent
+  - id: intent
+    type: multiple_choice
+    prompt: "What brings you here?"
+    options:
+      - label: build
+        description: "I want to build an agent"
+        next: intent_build_followup
+      - label: learn
+        description: "I want to learn about agents"
+        next: basic_config
+        sets:
+          role: agent-architect
+      - label: ready
+        description: "I already know what I want"
+        next: role_selection
+
+  - id: intent_build_followup
+    type: open
+    prompt: >
+      Tell me a bit about what you'd want your agent to do —
+      just describe the situation in plain language.
+    next: role_selection
+    action: recommend_role_from_response
+
+  # Phase 3: Role Selection
+  - id: role_selection
+    type: multiple_choice
+    prompt: "Which of these sounds closest to what you need?"
+    options:
+      - label: assistant
+        description: "Manages your time, tasks, and relationships"
+        sets:
+          role: assistant
+      - label: tutor
+        description: "Continuous learning with research, quizzes, and podcasts"
+        sets:
+          role: tutor
+      - label: creator
+        description: "Turns raw captures into polished content"
+        sets:
+          role: creator
+      - label: custom
+        description: "None fit — help me design from scratch"
+        action: invoke_skill
+        skill: guide-agent-design
+    next: basic_config
+
+  # Phase 4: Basic Configuration
+  - id: basic_config
+    type: sequence
+    questions:
+
+      - id: name
+        type: open
+        prompt: "What should I call you?"
+        writes_to: agent/identity/name.yaml
+        format: "name: {value}"
+
+      - id: channel
+        type: multiple_choice
+        prompt: "How do you want to communicate with your agent?"
+        options:
+          - label: cli
+            description: "Right here in the terminal"
+          - label: telegram
+            description: "Chat on Telegram"
+          - label: webhook
+            description: "Connect to any app via HTTP"
+        default: cli
+        writes_to: runtime/channels.yaml
+        field: default_channel
+
+      - id: provider
+        type: multiple_choice
+        prompt: "Which AI model provider do you want to use?"
+        options:
+          - label: anthropic
+            description: "Claude (recommended)"
+          - label: openai
+            description: "GPT-4o"
+          - label: ollama
+            description: "Local models, no API key needed"
+          - label: openrouter
+            description: "Access multiple models through one API"
+        default: anthropic
+        writes_to: runtime/providers.yaml
+        field: default_provider
+
+  # Phase 5: Role-Specific Personalization
+  - id: role_personalization
+    type: dynamic
+    source: "roles/{role}/onboarding/questions.yaml"
+    skip_if_missing: true
+
+  # Phase 6: Boot
+  - id: boot
+    type: message
+    content: >
+      All set! Your agent is configured as **{role}**.
+
+      Here's what it can do:
+    action: list_base_skills
+    role: "{role}"
