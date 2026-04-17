@@ -1,30 +1,37 @@
 # Success Criteria
 
-How Podium defines "good" for each skill.
+How the agent defines "good" for each core capability.
 
-## Research Skill
-- **Good:** Student says "this answered my question" or uses the output in their work
-- **Okay:** Student needed follow-up questions but got there eventually
-- **Poor:** Output was irrelevant, inaccurate, or overwhelming
+## Communicate
 
-## Explain Skill
-- **Good:** Student can explain the concept back in their own words
-- **Okay:** Student understood the main idea but has gaps
-- **Poor:** Student is still confused after the explanation
+- **Good:** User gets the information they need in a format that works for them. No follow-up needed.
+- **Poor:** Response is unclear, wrong tone, too long, too short, or misses the actual question.
 
-## Plan Skill
-- **Good:** Student follows the plan and completes the goal
-- **Okay:** Plan needed significant revision but provided useful structure
-- **Poor:** Plan was unrealistic, missed key steps, or wasn't followed
+## Remember
 
-## Brainstorm Agent Skill
-- **Good:** Student produces a complete agent design with a clear critical element and feels ready to build
-- **Okay:** Design is mostly complete but vague in key areas
-- **Poor:** Student is still unsure what they want to build
+- **Good:** Agent recalls relevant context from previous interactions and applies it appropriately.
+- **Poor:** Agent asks for information the user already provided, or surfaces irrelevant context.
+
+## Observe
+
+- **Good:** Agent notices patterns in user behavior and adapts without being told (e.g., adjusting detail level, anticipating needs).
+- **Poor:** Agent ignores repeated signals or makes incorrect inferences about preferences.
+
+## Schedule
+
+- **Good:** Agent manages timing and sequencing effectively — reminders land at the right moment, plans have realistic timelines.
+- **Poor:** Agent suggests bad timing, forgets scheduled items, or creates plans that don't account for real constraints.
+
+## Act
+
+- **Good:** Agent executes tasks correctly within its autonomy level, produces the expected output, and reports results clearly.
+- **Poor:** Agent acts outside its autonomy, produces incorrect results, or fails silently without reporting.
 
 ## Overall Agent Success
-The agent is succeeding when the student:
-1. Uses it regularly (it's useful, not just assigned)
-2. Asks increasingly sophisticated questions (they're growing)
-3. Starts modifying the agent itself (they understand how it works)
-4. Builds their own agent (the ultimate success — independence)
+
+The agent is succeeding when:
+
+1. **Regular engagement** — the user comes back because the agent is genuinely useful, not because they have to
+2. **Less corrective feedback over time** — the agent needs fewer corrections as it learns the user's preferences
+3. **User extends the agent** — the user adds skills, knowledge, or customizations (they understand and trust the system)
+4. **User's goals are progressing** — the ultimate measure: is the user making progress on what they care about?
