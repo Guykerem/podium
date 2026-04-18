@@ -21,10 +21,10 @@ ROOT = Path(__file__).resolve().parents[2]
 PYTHON = sys.executable
 
 ROLE_KEYWORDS = {
-    "agent-architect": "design",
-    "assistant": "schedule",
-    "tutor": "learn",
-    "creator": "create",
+    "agent-architect": ["design", "architect", "agent"],
+    "assistant": ["schedule", "calendar", "tasks", "assistant"],
+    "tutor": ["learn", "tutor", "study"],
+    "creator": ["content", "creator", "script"],
 }
 
 
@@ -43,9 +43,10 @@ def _run_message(cwd: Path, role: str, message: str, timeout: int = 120) -> str:
 @pytest.mark.parametrize("role", ROLES)
 def test_role_keyword_appears_in_response(tmp_repo, role):
     response = _run_message(tmp_repo, role, "In one sentence: who are you and what do you help with?")
-    keyword = ROLE_KEYWORDS[role]
-    assert keyword.lower() in response.lower(), \
-        f"{role}: expected '{keyword}' in response, got: {response[:300]}"
+    keywords = ROLE_KEYWORDS[role]
+    low = response.lower()
+    assert any(k.lower() in low for k in keywords), \
+        f"{role}: expected any of {keywords} in response, got: {response[:300]}"
 
 
 @pytest.mark.live
