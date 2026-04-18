@@ -1,12 +1,14 @@
 """
-Podium Runtime Engine — minimal bootstrap stub.
+Podium Runtime Engine — role loader + message dispatcher.
 
-Loads agent configuration, role overlay, skills, providers, channels,
-and scheduler config, then prints a summary of what's loaded.
+Usage:
+    python runtime/engine.py                           # boot summary
+    python runtime/engine.py --message "hi"            # send one message
+    python runtime/engine.py --message "hi" --dry-run  # print context, no LLM call
 """
-
 from __future__ import annotations
 
+import argparse
 import os
 import sys
 from pathlib import Path
@@ -18,12 +20,7 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 
 
-# ---------------------------------------------------------------------------
-# Config loaders
-# ---------------------------------------------------------------------------
-
 def load_yaml(path: Path) -> dict[str, Any]:
-    """Load a YAML file, returning an empty dict if it doesn't exist."""
     if not path.exists():
         return {}
     with open(path, "r", encoding="utf-8") as f:
@@ -31,52 +28,35 @@ def load_yaml(path: Path) -> dict[str, Any]:
 
 
 def resolve_active_role() -> str:
-    """Determine the active role.
-
-    Priority:
-      1. PODIUM_ROLE environment variable
-      2. agent/memory/active-role.yaml  (field: role)
-      3. Default: "agent-architect"
-    """
     env_role = os.environ.get("PODIUM_ROLE")
     if env_role:
         return env_role
-
     active_role_file = ROOT / "agent" / "memory" / "active-role.yaml"
     data = load_yaml(active_role_file)
     if data.get("role"):
         return data["role"]
-
     return "agent-architect"
 
 
 def load_agent_config() -> dict[str, Any]:
-    """Load core agent configuration from agent/ directory."""
     identity = load_yaml(ROOT / "agent" / "identity" / "style.yaml")
     autonomy = load_yaml(ROOT / "agent" / "autonomy.yaml")
     program_path = ROOT / "agent" / "program.md"
-    has_program = program_path.exists()
     return {
         "identity": identity,
         "autonomy": autonomy,
-        "has_program": has_program,
+        "has_program": program_path.exists(),
     }
 
 
 def load_role_overlay(role: str) -> dict[str, Any]:
-    """Load role-specific overlay from roles/<role>/."""
     role_dir = ROOT / "roles" / role
     if not role_dir.exists():
         return {}
-    overlay = load_yaml(role_dir / "role.yaml")
-    return overlay
+    return load_yaml(role_dir / "role.yaml")
 
 
 def discover_skills(role: str) -> dict[str, list[str]]:
-    """Discover skills from core and role-specific directories.
-
-    Returns dict with 'core' and 'base' skill name lists.
-    """
     core_dir = ROOT / "agent" / "skills" / "core"
     base_dir = ROOT / "roles" / role / "skills" / "base"
 
@@ -89,14 +69,10 @@ def discover_skills(role: str) -> dict[str, list[str]]:
             if entry.is_dir() and not entry.name.startswith(".")
         )
 
-    return {
-        "core": list_skills(core_dir),
-        "base": list_skills(base_dir),
-    }
+    return {"core": list_skills(core_dir), "base": list_skills(base_dir)}
 
 
 def load_runtime_configs() -> dict[str, dict[str, Any]]:
-    """Load providers, channels, and scheduler configs."""
     runtime_dir = ROOT / "runtime"
     return {
         "providers": load_yaml(runtime_dir / "providers.yaml"),
@@ -105,12 +81,7 @@ def load_runtime_configs() -> dict[str, dict[str, Any]]:
     }
 
 
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
-
-def main() -> None:
-    role = resolve_active_role()
+def _boot_summary(role: str) -> None:
     agent_cfg = load_agent_config()
     role_overlay = load_role_overlay(role)
     skills = discover_skills(role)
@@ -119,10 +90,6 @@ def main() -> None:
     providers_cfg = runtime["providers"]
     channels_cfg = runtime["channels"]
     scheduler_cfg = runtime["scheduler"]
-
-    default_provider = providers_cfg.get("default_provider", "none")
-    default_channel = channels_cfg.get("default_channel", "none")
-    scheduler_enabled = scheduler_cfg.get("enabled", False)
 
     total_skills = len(skills["core"]) + len(skills["base"])
 
@@ -136,18 +103,44 @@ def main() -> None:
     print(f"  Skills (core):   {len(skills['core'])}")
     print(f"  Skills (base):   {len(skills['base'])}")
     print(f"  Skills (total):  {total_skills}")
-    print(f"  Provider:        {default_provider}")
-    print(f"  Channel:         {default_channel}")
-    print(f"  Scheduler:       {'enabled' if scheduler_enabled else 'disabled'}")
+    print(f"  Provider:        {providers_cfg.get('default_provider', 'none')}")
+    print(f"  Channel:         {channels_cfg.get('default_channel', 'none')}")
+    print(f"  Scheduler:       {'enabled' if scheduler_cfg.get('enabled', False) else 'disabled'}")
     print("=" * 50)
-
-    # TODO: Initialize LiteLLM completion loop with provider config
-    # TODO: Wire up channel I/O (cli, telegram, webhook)
-    # TODO: Wire up APScheduler with scheduler config
-    # TODO: Enter main event loop
-
     print("\nEngine stub loaded successfully. Exiting.")
 
 
+def run_message(message: str, dry_run: bool = False) -> int:
+    sys.path.insert(0, str(ROOT))
+    from runtime.context import assemble_role_context
+
+    role = resolve_active_role()
+    context = assemble_role_context(role)
+    if dry_run:
+        print(context)
+        return 0
+    from runtime.llm_client import ClaudeCodeClient
+    client = ClaudeCodeClient()
+    response = client.complete(context, message)
+    print(response.text)
+    return 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(prog="podium-engine")
+    parser.add_argument("--message", type=str, default=None,
+                        help="Send one message to the active role and print the response")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="With --message, print the assembled context instead of calling the LLM")
+    args = parser.parse_args(argv)
+
+    if args.message is not None:
+        return run_message(args.message, dry_run=args.dry_run)
+
+    role = resolve_active_role()
+    _boot_summary(role)
+    return 0
+
+
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
