@@ -402,7 +402,7 @@ STATUS: success
 **Files in:**
 - `setup/routine.ts` — step that asks 1-3 prompts: "What should the agent do for you regularly?", optionally "When?", "What inputs does it need?". Sends to an LLM (via runtime) to structure into a routine YAML. Shows the generated YAML. Lets the user approve/edit/skip.
 - `schemas/routine.schema.yaml` — JSON schema for a routine: `id`, `name`, `when` (cron or interval), `what` (prompt), `inputs` (array), `enabled`.
-- Writes: `roles/<role>/schedule.yaml`.
+- **Overwrites**: `roles/<role>/schedule.yaml` (note: this file ships with example routines as a template; routine designer replaces its content with user-generated routines).
 
 **Example generated routine:**
 ```yaml
@@ -576,7 +576,7 @@ STATUS: success
 **Goal:** Fix NanoClaw's "no rollback" gap.
 
 **Files in:**
-- `.claude/skills/podium-uninstall/SKILL.md` — new skill. Removes: docker image (`podium-agent:*`), systemd/launchd service (if M13 installed it), `.env`, `active-role.yaml`, generated `roles/<role>/memory/context.md`, generated `roles/<role>/schedule.yaml`. Preserves identity/style/skills so a re-install is clean.
+- `.claude/skills/podium-uninstall/SKILL.md` — new skill. Removes: docker image (`podium-agent:*`), systemd/launchd service (if M13 installed it), `.env`, `agent/memory/active-role.yaml`, generated `roles/<role>/memory/context.md`. **Restores** (not deletes) `roles/<role>/schedule.yaml` via `git checkout HEAD -- <path>` because that file is a shipped template M7 overwrites. Preserves identity/style/skills/knowledge/onboarding source so a re-install is clean.
 
 **Acceptance:**
 - Run on a fully-installed clone → a subsequent `/podium-setup` behaves like a fresh install.
