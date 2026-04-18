@@ -1,6 +1,6 @@
 ---
-name: setup
-description: Run initial Podium setup. Bootstraps deps, asks the user which role (flavor) to activate, writes active-role.yaml, and hands off to /verify for a live probe. Triggers on "setup", "install", "configure podium", or first-time setup requests.
+name: podium-setup
+description: Run initial Podium setup. Bootstraps deps, asks the user which role (flavor) to activate, writes active-role.yaml, and hands off to /podium-verify for a live probe. Triggers on "podium setup", "install podium", "configure podium", or first-time Podium setup requests.
 ---
 
 # Podium Setup
@@ -40,19 +40,19 @@ Run `python -m setup --step verify` and parse the `VERIFY` status block.
 - `BOOT_STATUS: success` → proceed.
 - Otherwise → report which role and why; user can pick a different role.
 
-## 4. Hand Off to /verify
+## 4. Hand Off to /podium-verify
 
-Invoke the `/verify` skill (or run it in the background via `Bash(run_in_background=true)`):
+Invoke the `/podium-verify` skill (or run it in the background via `Bash(run_in_background=true)`):
 
 ```
 python runtime/engine.py --message "In one short sentence: who are you?"
 ```
 
 Tell the user:
-> "Setup complete — role <X> is active. A live probe is running in the background; /verify will surface the result."
+> "Setup complete — role <X> is active. A live probe is running in the background; /podium-verify will surface the result."
 
 ## 5. Next Step
 
 Point the user at two commands:
 - `python runtime/engine.py --message "<your message>"` — single-turn chat
-- `/verify` — re-run health check any time
+- `/podium-verify` — re-run health check any time

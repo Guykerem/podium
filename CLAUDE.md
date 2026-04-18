@@ -33,8 +33,8 @@ tests/                         # red/green TDD suite
   l2_setup/                    #   subprocess + stdout blocks
   l3_behavior/                 #   live Claude Code, @live gated
 .claude/skills/
-  setup/SKILL.md               #   /setup (AI-native entry)
-  verify/SKILL.md              #   /verify (standalone health check)
+  podium-setup/SKILL.md        #   /podium-setup (AI-native entry)
+  podium-verify/SKILL.md       #   /podium-verify (standalone health check)
 agent/                         # SHARED SKELETON — every role inherits this
   identity/                    #   Baseline constitution and style
   skills/

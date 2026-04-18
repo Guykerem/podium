@@ -15,10 +15,10 @@ Built as part of a guest lecture on AI agents at Reichman University, designed t
 ```
 git clone <repo-url> && cd podium
 claude
-/setup
+/podium-setup
 ```
 
-Three commands. `/setup` walks you through choosing a role, verifies your environment, and hands off to the live agent. Re-run `/verify` any time to confirm health.
+Three commands. `/podium-setup` walks you through choosing a role, verifies your environment, and hands off to the live agent. Re-run `/podium-verify` any time to confirm health.
 
 **Requires:** Python 3.10+, [Claude Code](https://claude.ai/download).
 
