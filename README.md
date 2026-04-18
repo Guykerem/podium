@@ -12,25 +12,22 @@ Built as part of a guest lecture on AI agents at Reichman University, designed t
 
 ## Quick Start
 
-1. **Clone:**
-   ```
-   git clone <repo-url> && cd podium
-   ```
+```
+git clone <repo-url> && cd podium
+claude
+/setup
+```
 
-2. **Install dependencies:**
-   ```
-   pip install -r runtime/requirements.txt
-   ```
+Three commands. `/setup` walks you through choosing a role, verifies your environment, and hands off to the live agent. Re-run `/verify` any time to confirm health.
 
-3. **Configure a provider** — edit `runtime/providers.yaml` to pick `openai`, `anthropic`, `ollama`, or `openrouter`, then export the matching API key (e.g. `export ANTHROPIC_API_KEY=...`).
+**Requires:** Python 3.10+, [Claude Code](https://claude.ai/download).
 
-4. **Pick a role and run:**
-   ```
-   PODIUM_ROLE=agent-architect python3 runtime/engine.py
-   ```
-   Swap in `assistant`, `tutor`, or `creator` to boot a different role.
+**After setup:**
+```
+python runtime/engine.py --message "your question here"
+```
 
-5. **Personalize** — each role has an `onboarding/questions.yaml` and a `memory/` directory. The agent-architect role hosts the role-selection and personalization flow.
+or keep talking from inside the `claude` session.
 
 ## Available Roles
 

@@ -15,11 +15,26 @@ The conductor, not the CEO. Inspired by Jacob Collier's orchestra improvisation.
 ## Repo Structure
 
 ```
-runtime/                       # Forked NanoClaw engine with LiteLLM
-  engine.py                    #   Loads providers, discovers skills, dispatches
+runtime/                       # NanoClaw-inspired engine
+  engine.py                    #   Loads role context, dispatches via --message
+  context.py                   #   Assembles role system prompt from identity + skills
+  llm_client.py                #   LLMClient protocol + ClaudeCodeClient (v0.1)
   providers.yaml               #   openai / anthropic / ollama / openrouter config
   channels.yaml                #   cli / telegram / webhook transports
-  scheduler.yaml               #   Proactive cron hooks
+  scheduler.yaml               #   Proactive cron hooks (v0.2)
+setup/                         # NanoClaw-style setup CLI
+  cli.py                       #   python -m setup --step install|verify
+  status.py                    #   structured status-block emitter
+  steps/                       #   install.py, verify.py
+setup.sh                       # bash bootstrap (python + venv + deps)
+tests/                         # red/green TDD suite
+  contracts/                   #   RoleContract — 9 assertions x 4 roles
+  l1_boot/                     #   mocked, fast
+  l2_setup/                    #   subprocess + stdout blocks
+  l3_behavior/                 #   live Claude Code, @live gated
+.claude/skills/
+  setup/SKILL.md               #   /setup (AI-native entry)
+  verify/SKILL.md              #   /verify (standalone health check)
 agent/                         # SHARED SKELETON — every role inherits this
   identity/                    #   Baseline constitution and style
   skills/
@@ -70,3 +85,18 @@ spec/                          # Architecture and design decisions
 - Lecture outline: `lecture/outline/conductors-arc.md`
 - Workshop template: `workshop/design-template.md`
 - Example role: `roles/agent-architect/` (the default, itself a worked example)
+
+## Testing
+
+```
+./setup.sh                  # installs deps (creates .venv if needed)
+pytest                      # all layers; L3 skipped unless `claude` on PATH
+pytest -m "not live"        # skip live behavior tests
+pytest tests/contracts      # just the RoleContract (parity check across roles)
+```
+
+Test layers:
+- `tests/l1_boot/` — mocked, fast. YAML loaders, skill discovery, role resolution.
+- `tests/l2_setup/` — subprocess-driven. Runs `python -m setup` and parses status blocks.
+- `tests/l3_behavior/` — live. Shells to `claude -p`, gated by `@pytest.mark.live`.
+- `tests/contracts/test_role_contract.py` — 9 assertions × 4 roles = 36 parity cases.
