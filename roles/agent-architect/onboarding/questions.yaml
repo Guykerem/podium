@@ -1,26 +1,36 @@
 # Agent Architect — Onboarding Questions
-# Asked on first interaction to personalize the experience.
+# Normalized for setup v0.2 (M5).
+#
+# Schema: id | prompt | type (text|choice|multi) | options? | required | memory_key
 
 questions:
-  - id: experience_level
-    type: multiple_choice
+  - id: name
+    prompt: "What should I call you?"
+    type: text
+    required: true
+    memory_key: name
+
+  - id: primary_goal
     prompt: >
-      How much experience do you have with AI tools?
+      What do you want to walk away with? In one sentence, what would make
+      this time well spent?
+    type: text
+    required: true
+    memory_key: primary_goal
+
+  - id: experience_level
+    prompt: "How much experience do you have with AI tools?"
+    type: choice
     options:
-      - label: beginner
-        description: "I've barely used AI tools, or never"
-      - label: some
-        description: "I've used ChatGPT or similar, but nothing technical"
-      - label: technical
-        description: "I've built things with AI, written prompts, or used APIs"
+      - "beginner — barely used AI tools, or never"
+      - "some — used ChatGPT or similar, nothing technical"
+      - "technical — built things with AI, written prompts, used APIs"
+    required: true
+    memory_key: experience_level
 
   - id: curiosity
-    type: open
     prompt: >
       What are you most curious about when it comes to AI agents?
-
-  - id: goal
-    type: open
-    prompt: >
-      What would make this time well spent for you? What do you want to
-      walk away with?
+    type: text
+    required: false
+    memory_key: curiosity

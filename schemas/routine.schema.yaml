@@ -1,0 +1,68 @@
+# Podium routine schema — validates every entry in roles/<role>/schedule.yaml.
+#
+# Written during /podium-setup M7. Consumed (v0.3) by the scheduler executor.
+# Keep this file strict: a routine that fails validation is refused at commit
+# time. Fields and shape match the spec in
+# spec/podium-setup-v0.2-decomposition.md §M7.
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://podium.dev/schemas/routine.schema.yaml"
+title: Routine
+description: >
+  A single recurring job the agent runs on behalf of the user. A routine YAML
+  file groups many routines under `routines:`.
+type: object
+additionalProperties: false
+required:
+  - id
+  - name
+  - when
+  - what
+  - inputs
+  - enabled
+properties:
+  id:
+    type: string
+    description: >
+      Stable slug. Lowercase, digits, hyphens. Unique per role. Used as the
+      scheduler handle so renames cause cache churn on purpose.
+    pattern: "^[a-z][a-z0-9-]*[a-z0-9]$"
+    minLength: 2
+    maxLength: 64
+  name:
+    type: string
+    description: Human-readable name shown to the user in logs + UI.
+    minLength: 1
+    maxLength: 120
+  when:
+    type: string
+    description: >
+      Cron expression (5 or 6 fields) OR a human interval of the form
+      "every N <unit>" where <unit> ∈ {minute, minutes, hour, hours, day,
+      days, week, weeks}.
+    minLength: 1
+    maxLength: 80
+  what:
+    type: string
+    description: >
+      Natural-language prompt the agent uses when the job fires. Should read
+      like an instruction. Keep it tight — one sentence is ideal.
+    minLength: 4
+    maxLength: 600
+  inputs:
+    type: array
+    description: >
+      Tool / source handles the routine needs (e.g. gmail, calendar, web,
+      rss, drive). Empty array is valid — the routine may not need any.
+    items:
+      type: string
+      pattern: "^[a-z][a-z0-9-]*$"
+      minLength: 1
+      maxLength: 32
+    uniqueItems: true
+    maxItems: 8
+  enabled:
+    type: boolean
+    description: >
+      Whether the scheduler should actually fire the routine. Defaults to
+      true when omitted by the designer; normalize to a real boolean at
+      commit time.

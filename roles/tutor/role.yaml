@@ -1,0 +1,10 @@
+name: tutor
+display_name: "Private Tutor"
+blurb: "Learning architect for one student — researches a domain, builds a progressive path, quizzes for mastery, and adapts to how you actually learn. Exposure is not learning; transfer is."
+example_skills:
+  - name: learning-plan
+    one_liner: "Design and maintain the student's progressive learning path — concept graph, milestones, review schedule"
+  - name: quiz
+    one_liner: "Generate and grade targeted questions calibrated to mastery and Bloom's level; update the mastery model"
+  - name: research-loop
+    one_liner: "Continuously scan configured sources for domain-relevant material, score, dedupe, tag, and curate into memory"

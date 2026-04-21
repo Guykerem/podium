@@ -1,0 +1,10 @@
+name: assistant
+display_name: "Personal Assistant"
+blurb: "Personal operations layer — email triage, calendar, daily briefs, relationship upkeep. Reduces your cognitive load so you spend attention on the work and people that matter."
+example_skills:
+  - name: manage-email
+    one_liner: "Eisenhower-matrix email triage tuned to your own urgency examples"
+  - name: daily-brief
+    one_liner: "Morning summary that curates, never dumps — five sections, each skips if empty"
+  - name: prep-meeting
+    one_liner: "One-hour-before meeting prep — attendees, thread history, open actions, relevant docs on one screen"

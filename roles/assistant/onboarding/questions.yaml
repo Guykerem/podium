@@ -1,115 +1,55 @@
 # Personal Assistant — Onboarding Questions
-# Asked on first interaction to collect the axioms the assistant references
-# in every subsequent recommendation. Skipping a question is allowed — the
-# assistant will ask again the first time it's needed.
+# Normalized for setup v0.2 (M5). Kept short (3-6 questions): longer intake
+# moves to first-conversation prompts so setup stays under 15 minutes.
+#
+# Schema: id | prompt | type (text|choice|multi) | options? | required | memory_key
+# `memory_key` is where the answer lands in roles/assistant/memory/context.md
+# YAML frontmatter; nested dotted keys are allowed ("profile.name").
 
 questions:
-  - id: life_context
-    type: open
-    prompt: >
-      In one or two sentences — what does a typical workday look like for you
-      right now? (Role, main responsibilities, rough hours.)
+  - id: name
+    prompt: "What should I call you?"
+    type: text
+    required: true
+    memory_key: name
 
-  - id: top_goals
-    type: open
+  - id: pronouns
+    prompt: "Preferred pronouns?"
+    type: choice
+    options:
+      - "he/him"
+      - "she/her"
+      - "they/them"
+      - "prefer not to say"
+    required: false
+    memory_key: pronouns
+
+  - id: primary_goal
     prompt: >
-      What are your top 3 goals this quarter? These anchor what I flag as
-      "important" in your inbox, calendar, and tasks.
+      In one sentence — what should I help you with most right now?
+    type: text
+    required: true
+    memory_key: primary_goal
 
   - id: peak_hours
-    type: multiple_choice
-    prompt: >
-      When is your brain sharpest for hard or creative work?
+    prompt: "When is your brain sharpest?"
+    type: choice
     options:
-      - label: early_morning
-        description: "Before 9am"
-      - label: mid_morning
-        description: "9am–12pm"
-      - label: afternoon
-        description: "1pm–5pm"
-      - label: evening
-        description: "After 6pm"
-      - label: varies
-        description: "It shifts — I'll tell you as I learn"
-
-  - id: non_negotiables
-    type: open
-    prompt: >
-      What are your non-negotiables — the times or commitments I should
-      never schedule over? (School pickup, gym, family dinner, anything.)
-
-  - id: quiet_hours
-    type: open
-    prompt: >
-      What hours should I never send you a proactive message during?
-      (Default: 22:00–07:00 and weekends.)
-
-  - id: brief_time
-    type: open
-    prompt: >
-      What time should your morning brief land? (Default: 07:30 on weekdays.)
-
-  - id: urgency_examples
-    type: open
-    prompt: >
-      Give me 2–3 concrete examples of emails or messages you'd call
-      "urgent." This tunes my triage better than any rule I could invent.
-
-  - id: relationship_cadences
-    type: open
-    prompt: >
-      Who are 3–5 people you want to stay in regular touch with, and roughly
-      how often? (Close friends, mentors, family.) I'll track dormancy
-      against the cadence you set.
-
-  - id: connected_tools
-    type: multi_select
-    prompt: >
-      Which tools should I integrate with? (You can add more later.)
-    options:
-      - label: google_calendar
-        description: "Google Calendar"
-      - label: gmail
-        description: "Gmail"
-      - label: outlook
-        description: "Outlook / Microsoft 365"
-      - label: todoist
-        description: "Todoist"
-      - label: linear
-        description: "Linear"
-      - label: notion
-        description: "Notion"
-      - label: slack
-        description: "Slack"
-      - label: none_yet
-        description: "Not yet — I'll connect later"
+      - "early morning (before 9am)"
+      - "mid-morning (9am–12pm)"
+      - "afternoon (1pm–5pm)"
+      - "evening (after 6pm)"
+      - "varies"
+    required: false
+    memory_key: peak_hours
 
   - id: interrupt_tolerance
-    type: multiple_choice
     prompt: >
       How proactive should I be with mid-day check-ins?
+    type: choice
     options:
-      - label: quiet
-        description: "Rarely — brief + weekly review is enough"
-      - label: balanced
-        description: "Only when something truly needs attention"
-      - label: active
-        description: "Nudge me often — I want the extra hand"
-
-  - id: extension_interest
-    type: multi_select
-    prompt: >
-      Any of these specializations sound useful? (You can activate more later.)
-    options:
-      - label: team_management
-        description: "I manage direct reports or a team"
-      - label: travel
-        description: "I travel regularly"
-      - label: finance
-        description: "Help me track expenses and budgets"
-      - label: knowledge_capture
-        description: "I keep a second brain (Notion/Obsidian)"
-      - label: health_and_habits
-        description: "Mood, sleep, and habit tracking"
-      - label: none
-        description: "Just the basics for now"
+      - "quiet (brief + weekly review is enough)"
+      - "balanced (only when something needs attention)"
+      - "active (nudge me often)"
+    required: false
+    memory_key: interrupt_tolerance

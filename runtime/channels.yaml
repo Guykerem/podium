@@ -1,15 +1,24 @@
 # I/O channel configuration
-# Enable channels by setting enabled: true and providing required credentials.
+#
+# Enabled channels list is the source of truth for which channels the runtime
+# should wire up. `cli` is always on; `telegram` flips to true only after
+# /add-telegram verifies the bot token via Telegram's getMe API.
+#
+# Per-channel config: set `enabled` and fill in any channel-specific fields
+# (e.g. bot_username/chat_id for telegram, host/port/path for webhook).
 
 default_channel: cli
+enabled: [cli]
 
 channels:
   cli:
-    enabled: true
+    always_on: true
 
   telegram:
     enabled: false
     bot_token: ${TELEGRAM_BOT_TOKEN}
+    bot_username: ""
+    chat_id: ""
 
   webhook:
     enabled: false

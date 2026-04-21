@@ -1,0 +1,10 @@
+name: creator
+display_name: "Content Creator"
+blurb: "Production pipeline for a single creator — turns raw captures (voice memos, clips, ideas) into platform-ready content across video, image, and audio. Elevates your voice, never replaces it."
+example_skills:
+  - name: triage-captures
+    one_liner: "Ingest raw captures (voice notes, clips, screenshots) and route each into a format direction with a hook hypothesis"
+  - name: write-script
+    one_liner: "Transform a transcript, brief, or raw idea into a platform-appropriate script with hook, structure, and pacing"
+  - name: format-for-platform
+    one_liner: "Adapt one piece of content for multiple platforms — aspect ratios, captions, lengths, metadata"

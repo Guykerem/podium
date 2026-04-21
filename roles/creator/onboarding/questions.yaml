@@ -1,146 +1,57 @@
 # Content Creator — Onboarding Questions
-# Asked on first interaction to personalize the creator agent to the user's
-# voice, platforms, cadence, and toolchain.
+# Normalized for setup v0.2 (M5). Deeper tool/platform inventory moves to
+# first-session dialogue so setup stays under 15 minutes.
+#
+# Schema: id | prompt | type (text|choice|multi) | options? | required | memory_key
 
 questions:
-  - id: creator_stage
-    type: multiple_choice
+  - id: name
+    prompt: "What should I call you?"
+    type: text
+    required: true
+    memory_key: name
+
+  - id: primary_goal
     prompt: >
-      Where are you in your creator journey?
+      In one sentence — what should I help you create more of, or create
+      better? (e.g. "ship a weekly YouTube essay", "repurpose podcasts into
+      LinkedIn posts".)
+    type: text
+    required: true
+    memory_key: primary_goal
+
+  - id: creator_stage
+    prompt: "Where are you in your creator journey?"
+    type: choice
     options:
-      - label: starting
-        description: "I want to start creating but haven't shipped consistently yet"
-      - label: building
-        description: "I post regularly on 1-2 platforms and want to level up"
-      - label: scaling
-        description: "I have a body of work and need help producing more, faster"
-      - label: pro
-        description: "Creating is my job — I need production-grade pipelines"
+      - "starting — want to but haven't shipped consistently"
+      - "building — post regularly on 1-2 platforms, want to level up"
+      - "scaling — have a body of work, need to produce more, faster"
+      - "pro — creating is my job"
+    required: true
+    memory_key: creator_stage
 
   - id: primary_formats
-    type: multi_select
-    prompt: >
-      Which formats do you create (or want to create)?
+    prompt: "Which formats do you create (or want to create)?"
+    type: multi
     options:
-      - label: short_video
-        description: "Short-form video — TikTok, Reels, Shorts"
-      - label: long_video
-        description: "Long-form video — YouTube, interviews, tutorials"
-      - label: podcast
-        description: "Podcast — audio, video podcast, clips"
-      - label: written
-        description: "Written — LinkedIn, X threads, newsletter, blog"
-      - label: visual
-        description: "Visual — images, carousels, infographics"
-      - label: mixed
-        description: "A mix — I repurpose one capture across formats"
-
-  - id: primary_platforms
-    type: multi_select
-    prompt: >
-      Which platforms matter most for you right now?
-    options:
-      - label: tiktok
-        description: "TikTok"
-      - label: reels
-        description: "Instagram Reels / Feed"
-      - label: shorts
-        description: "YouTube Shorts"
-      - label: youtube
-        description: "YouTube long-form"
-      - label: linkedin
-        description: "LinkedIn"
-      - label: x
-        description: "X / Twitter"
-      - label: substack
-        description: "Substack / newsletter"
-      - label: podcast_platforms
-        description: "Spotify / Apple Podcasts"
-      - label: other
-        description: "Something else — I'll tell you"
-
-  - id: topic_niche
-    type: open
-    prompt: >
-      What do you create about? One or two sentences — niche, point of view,
-      what you want to be known for.
-
-  - id: voice_references
-    type: open
-    prompt: >
-      Name 2-3 creators whose voice or style you admire (you don't have to
-      copy them — this just helps me understand your taste).
-
-  - id: current_tools
-    type: multi_select
-    prompt: >
-      Which tools do you already use? (I'll adapt my recommendations around them.)
-    options:
-      - label: capcut
-        description: "CapCut"
-      - label: descript
-        description: "Descript"
-      - label: premiere
-        description: "Premiere / Final Cut"
-      - label: davinci
-        description: "DaVinci Resolve"
-      - label: figma_canva
-        description: "Figma / Canva for visuals"
-      - label: midjourney
-        description: "Midjourney"
-      - label: chatgpt_claude
-        description: "ChatGPT / Claude for drafting"
-      - label: elevenlabs
-        description: "ElevenLabs for voice"
-      - label: runway_pika
-        description: "Runway / Pika for AI video"
-      - label: whisper
-        description: "Whisper / transcription tools"
-      - label: none_yet
-        description: "None yet — recommend what I need"
-
-  - id: cadence_goal
-    type: multiple_choice
-    prompt: >
-      What's your shipping goal?
-    options:
-      - label: daily
-        description: "Daily posts"
-      - label: few_weekly
-        description: "3-5x per week"
-      - label: weekly
-        description: "Once a week, consistently"
-      - label: monthly
-        description: "A few high-quality pieces per month"
-      - label: project
-        description: "Project-based — I don't want a fixed cadence"
+      - "short video (TikTok, Reels, Shorts)"
+      - "long video (YouTube, interviews, tutorials)"
+      - "podcast (audio, video podcast, clips)"
+      - "written (LinkedIn, X, newsletter, blog)"
+      - "visual (images, carousels, infographics)"
+    required: false
+    memory_key: primary_formats
 
   - id: biggest_bottleneck
-    type: multiple_choice
-    prompt: >
-      What slows you down the most right now?
+    prompt: "What slows you down the most right now?"
+    type: choice
     options:
-      - label: ideas
-        description: "Finding ideas / what to make"
-      - label: capturing
-        description: "Getting the raw material recorded"
-      - label: editing
-        description: "Editing and production"
-      - label: writing
-        description: "Writing hooks, scripts, captions"
-      - label: repurposing
-        description: "Getting enough out of each capture"
-      - label: consistency
-        description: "Showing up consistently"
-
-  - id: licensing_sensitivity
-    type: multiple_choice
-    prompt: >
-      How strict are you about licensing and AI disclosure?
-    options:
-      - label: strict
-        description: "Strict — commercial use, full attribution, flag all AI assets"
-      - label: standard
-        description: "Standard — free stock with attribution is fine"
-      - label: personal
-        description: "Personal use — I just want to ship"
+      - "ideas — finding what to make"
+      - "capturing — getting the raw material recorded"
+      - "editing — production work"
+      - "writing — hooks, scripts, captions"
+      - "repurposing — getting enough out of each capture"
+      - "consistency — showing up reliably"
+    required: false
+    memory_key: biggest_bottleneck

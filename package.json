@@ -1,0 +1,30 @@
+{
+  "name": "podium",
+  "version": "0.2.0-pre",
+  "private": true,
+  "description": "Agent boilerplate: minimal runtime + shared agent skeleton + pluggable role overlays. Forked bootstrap from NanoClaw.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "setup": "tsx setup/index.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:contracts": "vitest run tests/contracts",
+    "test:l1": "vitest run tests/l1_boot",
+    "test:l2": "vitest run tests/l2_setup",
+    "test:l3": "vitest run tests/l3_behavior",
+    "test:unit": "vitest run runtime setup"
+  },
+  "dependencies": {
+    "yaml": "^2.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vitest": "^2.1.0"
+  }
+}
