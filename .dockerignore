@@ -1,0 +1,43 @@
+# Exclude dev state from the Docker build context.
+# The Dockerfile COPYs a narrow set of paths (package.json, tsconfig.json,
+# runtime/, setup/, agent/, roles/, container/entrypoint.sh), but the build
+# context is the repo root — so without this file Docker streams everything
+# to the daemon, slowing builds and occasionally OOMing student laptops.
+
+# Version control
+.git/
+.gitignore
+
+# Local session / editor state
+.claude/
+.DS_Store
+
+# Python v0.1 (not used by the TS runtime image)
+legacy/
+
+# Virtualenvs
+.venv/
+venv/
+
+# Test / tooling caches
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Build artifacts
+dist/
+build/
+
+# Logs
+logs/
+*.log
+
+# Worktrees (local dev only)
+.worktrees/
+
+# Secrets — never ship into an image
+.env
+.env.*

@@ -15,23 +15,32 @@ The conductor, not the CEO. Inspired by Jacob Collier's orchestra improvisation.
 ## Repo Structure
 
 ```
-runtime/                       # NanoClaw-inspired engine
-  engine.py                    #   Loads role context, dispatches via --message
-  context.py                   #   Assembles role system prompt from identity + skills
-  llm_client.py                #   LLMClient protocol + ClaudeCodeClient (v0.1)
+runtime/                       # NanoClaw-inspired engine (TypeScript)
+  engine.ts                    #   Loads role context, dispatches via --message
+  context.ts                   #   Assembles role system prompt from identity + skills
+  llm_client.ts                #   LLMClient interface + ClaudeCodeClient
+  scheduler.ts                 #   Proactive cron dispatch
   providers.yaml               #   openai / anthropic / ollama / openrouter config
   channels.yaml                #   cli / telegram / webhook transports
   scheduler.yaml               #   Proactive cron hooks (v0.2)
-setup/                         # NanoClaw-style setup CLI
-  cli.py                       #   python -m setup --step install|verify
-  status.py                    #   structured status-block emitter
-  steps/                       #   install.py, verify.py
-setup.sh                       # bash bootstrap (python + venv + deps)
-tests/                         # red/green TDD suite
+setup/                         # NanoClaw-style setup CLI (tsx / npm run setup)
+  install.ts, verify.ts        #   install + health-check steps
+  onboarding.ts, routine.ts    #   personalization + schedule design
+  role-select.ts, role-preview.ts, channel.ts, service.ts
+  platform.ts, timezone.ts, runtime.ts, status.ts
+container/                     # Optional Docker runtime
+  Dockerfile                   #   Node 20 slim image for the runtime
+  build.sh                     #   Local image build
+  entrypoint.sh                #   Container boot — loads role and channels
+  README.md                    #   Container usage notes
+setup.sh                       # bash bootstrap (node + npm install)
+tests/                         # vitest suite (red/green TDD)
   contracts/                   #   RoleContract — 9 assertions x 4 roles
   l1_boot/                     #   mocked, fast
   l2_setup/                    #   subprocess + stdout blocks
-  l3_behavior/                 #   live Claude Code, @live gated
+  l3_behavior/                 #   live Claude Code, gated
+runtime/__tests__/             #   unit tests colocated with runtime
+setup/__tests__/               #   unit tests colocated with setup
 .claude/skills/
   podium-setup/SKILL.md        #   /podium-setup (AI-native entry)
   podium-verify/SKILL.md       #   /podium-verify (standalone health check)
@@ -81,7 +90,7 @@ spec/                          # Architecture and design decisions
 
 - Spec: `spec/podium-spec.md`
 - Agent program: `agent/program.md`
-- Runtime engine: `runtime/engine.py`
+- Runtime engine: `runtime/engine.ts`
 - Lecture outline: `lecture/outline/conductors-arc.md`
 - Workshop template: `workshop/design-template.md`
 - Example role: `roles/agent-architect/` (the default, itself a worked example)
@@ -89,14 +98,18 @@ spec/                          # Architecture and design decisions
 ## Testing
 
 ```
-./setup.sh                  # installs deps (creates .venv if needed)
-pytest                      # all layers; L3 skipped unless `claude` on PATH
-pytest -m "not live"        # skip live behavior tests
-pytest tests/contracts      # just the RoleContract (parity check across roles)
+npm install                 # Node 20+; installs tsx + vitest + yaml
+npm test                    # all vitest suites (L3 skipped unless `claude` on PATH)
+npm run test:contracts      # just the RoleContract (parity check across roles)
+npm run test:l1             # mocked boot tests
+npm run test:l2             # subprocess setup tests
+npm run test:l3             # live Claude Code behavior tests
+npm run test:unit           # colocated unit tests under runtime/ and setup/
+npm run typecheck           # tsc --noEmit
 ```
 
 Test layers:
 - `tests/l1_boot/` — mocked, fast. YAML loaders, skill discovery, role resolution.
-- `tests/l2_setup/` — subprocess-driven. Runs `python -m setup` and parses status blocks.
-- `tests/l3_behavior/` — live. Shells to `claude -p`, gated by `@pytest.mark.live`.
-- `tests/contracts/test_role_contract.py` — 9 assertions × 4 roles = 36 parity cases.
+- `tests/l2_setup/` — subprocess-driven. Runs `npm run setup` and parses status blocks.
+- `tests/l3_behavior/` — live. Shells to `claude -p`, skipped when unavailable.
+- `tests/contracts/role-contract.test.ts` — 9 assertions × 4 roles = 36 parity cases.
