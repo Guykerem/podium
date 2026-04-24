@@ -14,3 +14,4 @@ dist/
 .env.local
 .local-deps/
 .package.json.local
+agent/memory/active-role.yaml
