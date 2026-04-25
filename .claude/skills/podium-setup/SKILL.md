@@ -322,7 +322,8 @@ Runtime:   <runtime>
 Response:  "<probe response excerpt>..." (<latency_ms> ms)
 
 ── Talk to your agent ──────────────────────────────
-• From this Claude Code session: just talk naturally — your role is loaded.
+• Live chat (recommended):
+    npm run chat
 • One-shot from terminal:
     npx tsx runtime/engine.ts --message "your question"
 • Re-check health any time: /podium-verify
