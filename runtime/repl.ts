@@ -15,7 +15,7 @@
  *   /clear   forget this session's transcript
  *   /quit    exit
  */
-import * as readline from "node:readline/promises";
+import * as readline from "node:readline";
 import { stdin, stdout } from "node:process";
 
 import { assembleRoleContext } from "./context";
@@ -103,34 +103,37 @@ export async function main(): Promise<number> {
   console.log(banner(role));
 
   const rl = readline.createInterface({ input: stdin, output: stdout });
-  const ac = new AbortController();
-  rl.once("close", () => ac.abort());
   const transcript: Turn[] = [];
+  const writePrompt = () => stdout.write("\nyou> ");
 
-  while (true) {
-    let line: string;
-    try {
-      line = await rl.question("\nyou> ", { signal: ac.signal });
-    } catch {
-      // readline closed (Ctrl-D, EOF) or SIGINT — clean exit
-      break;
-    }
+  writePrompt();
 
+  // for await over the readline interface yields each input line and exits
+  // cleanly on stdin close (EOF, Ctrl-D) — the only way to consume buffered
+  // lines reliably across a sync spawnSync child.
+  outer: for await (const rawLine of rl) {
+    const line = rawLine as string;
     const action = parseInput(line);
-    if (action.kind === "noop") continue;
-    if (action.kind === "exit") break;
+
+    if (action.kind === "exit") break outer;
+    if (action.kind === "noop") {
+      writePrompt();
+      continue;
+    }
     if (action.kind === "help") {
       console.log(HELP_TEXT);
+      writePrompt();
       continue;
     }
     if (action.kind === "clear") {
       transcript.length = 0;
       console.log("(conversation cleared)");
+      writePrompt();
       continue;
     }
 
     const userMessage = action.text;
-    process.stdout.write("...\n");
+    stdout.write("...\n");
 
     let response;
     try {
@@ -143,12 +146,14 @@ export async function main(): Promise<number> {
       } else if (/timeout|timed out/i.test(msg)) {
         console.error("Tip: that took too long. Network slow or model busy — try again.");
       }
+      writePrompt();
       continue;
     }
 
     transcript.push({ role: "user", text: userMessage });
     transcript.push({ role: "assistant", text: response.text });
     console.log(`\nagent> ${response.text}`);
+    writePrompt();
   }
 
   rl.close();
