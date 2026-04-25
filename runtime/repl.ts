@@ -108,8 +108,11 @@ export async function main(): Promise<number> {
   while (true) {
     let line: string;
     try {
+      console.error("[debug] awaiting input");
       line = await rl.question("\nyou> ");
-    } catch {
+      console.error(`[debug] got line: ${JSON.stringify(line)}`);
+    } catch (err) {
+      console.error(`[debug] question rejected: ${(err as Error).message ?? String(err)}`);
       // readline closed (Ctrl-D, EOF) — fall through to clean exit
       break;
     }
