@@ -9,6 +9,7 @@
   },
   "scripts": {
     "setup": "tsx setup/index.ts",
+    "chat": "tsx runtime/repl.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
