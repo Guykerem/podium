@@ -103,17 +103,16 @@ export async function main(): Promise<number> {
   console.log(banner(role));
 
   const rl = readline.createInterface({ input: stdin, output: stdout });
+  const ac = new AbortController();
+  rl.once("close", () => ac.abort());
   const transcript: Turn[] = [];
 
   while (true) {
     let line: string;
     try {
-      console.error("[debug] awaiting input");
-      line = await rl.question("\nyou> ");
-      console.error(`[debug] got line: ${JSON.stringify(line)}`);
-    } catch (err) {
-      console.error(`[debug] question rejected: ${(err as Error).message ?? String(err)}`);
-      // readline closed (Ctrl-D, EOF) — fall through to clean exit
+      line = await rl.question("\nyou> ", { signal: ac.signal });
+    } catch {
+      // readline closed (Ctrl-D, EOF) or SIGINT — clean exit
       break;
     }
 
