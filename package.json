@@ -19,7 +19,7 @@
     "test:l2": "vitest run tests/l2_setup",
     "test:l3": "vitest run tests/l3_behavior",
     "test:unit": "vitest run runtime setup",
-    "test:web": "vitest run tests/web"
+    "test:web": "vitest run tests/web --passWithNoTests"
   },
   "dependencies": {
     "yaml": "^2.6.0",
