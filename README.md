@@ -64,6 +64,13 @@ The runtime reads `PODIUM_ROLE` (or `agent/memory/active-role.yaml`), loads the 
 
 The `agent-architect` role is itself an example — read `roles/agent-architect/` to see the full shape of a role. Then open `workshop/design-template.md` and answer the six questions.
 
+## Web editor + lecture site
+
+The `hackathon/` directory is a publishable static site that serves as the
+lecture's gallery and editor. Students build their own agent through a form at
+`/editor` and export a single zip; the instructor imports zips with
+`npm run intake`. See `hackathon/README.md` for details.
+
 ## The Metaphor
 
 You're not a CEO managing AI employees. You're a conductor leading an orchestra.
