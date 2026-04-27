@@ -19,8 +19,8 @@
     "test:l2": "vitest run tests/l2_setup",
     "test:l3": "vitest run tests/l3_behavior",
     "test:unit": "vitest run runtime setup",
-    "test:web": "vitest run tests/web --passWithNoTests",
-    "db:migrate": "tsx db/apply.ts"
+    "test:web": "dotenv -e .env.local -- vitest run tests/web --passWithNoTests",
+    "db:migrate": "dotenv -e .env.local -- tsx db/apply.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.0",
@@ -34,6 +34,7 @@
     "@types/node": "^22.10.0",
     "@types/yauzl": "^2.10.3",
     "@vercel/config": "^0.2.1",
+    "dotenv-cli": "^11.0.0",
     "jszip": "^3.10.1",
     "tsx": "^4.19.0",
     "typescript": "^5.7.0",
