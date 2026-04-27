@@ -1,6 +1,6 @@
 {
   "name": "podium",
-  "version": "0.2.0-pre",
+  "version": "0.2.0",
   "private": true,
   "description": "Agent boilerplate: minimal runtime + shared agent skeleton + pluggable role overlays. Forked bootstrap from NanoClaw.",
   "type": "module",
@@ -10,7 +10,6 @@
   "scripts": {
     "setup": "tsx setup/index.ts",
     "chat": "tsx runtime/repl.ts",
-    "intake": "tsx scripts/intake.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -18,25 +17,13 @@
     "test:l1": "vitest run tests/l1_boot",
     "test:l2": "vitest run tests/l2_setup",
     "test:l3": "vitest run tests/l3_behavior",
-    "test:unit": "vitest run runtime setup",
-    "test:web": "dotenv -e .env.local -- vitest run tests/web --passWithNoTests",
-    "db:migrate": "dotenv -e .env.local -- tsx db/apply.ts"
+    "test:unit": "vitest run runtime setup"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^0.10.0",
-    "bcryptjs": "^2.4.3",
-    "yaml": "^2.6.0",
-    "yauzl": "^3.1.3"
+    "yaml": "^2.6.0"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.6",
-    "@types/jszip": "^3.4.0",
     "@types/node": "^22.10.0",
-    "@types/yauzl": "^2.10.3",
-    "@vercel/config": "^0.2.1",
-    "dotenv-cli": "^11.0.0",
-    "happy-dom": "^15.11.0",
-    "jszip": "^3.10.1",
     "tsx": "^4.19.0",
     "typescript": "^5.7.0",
     "vitest": "^2.1.0"

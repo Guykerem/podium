@@ -15,6 +15,6 @@
     "isolatedModules": true,
     "verbatimModuleSyntax": false
   },
-  "include": ["setup/**/*.ts", "runtime/**/*.ts", "tests/**/*.ts", "vercel.ts", "hackathon/lib/api-types.d.ts", "hackathon/lib/phase.d.ts", "hackathon/lib/agent-schema.d.ts"],
+  "include": ["setup/**/*.ts", "runtime/**/*.ts", "tests/**/*.ts"],
   "exclude": ["node_modules", "dist", "legacy"]
 }

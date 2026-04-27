@@ -8,6 +8,8 @@ Podium is an agent boilerplate — a minimal runtime plus a shared agent skeleto
 2. **A boilerplate** — clone it, pick a role, personalize, run
 3. **A gift** — students build their own role on top of it across the course
 
+Sister repo: [`podium-site`](https://github.com/Guykerem/podium-site) — the lecture-day website (gallery, editor, voting, dossiers). This repo is just the agent boilerplate.
+
 ## Central Metaphor
 
 The conductor, not the CEO. Inspired by Jacob Collier's orchestra improvisation. Agents are an orchestra you conduct through intent and self-knowledge, not employees you micromanage.
