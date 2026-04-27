@@ -3,7 +3,7 @@
     "target": "ES2022",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "lib": ["ES2022"],
+    "lib": ["ES2022", "DOM"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -15,6 +15,6 @@
     "isolatedModules": true,
     "verbatimModuleSyntax": false
   },
-  "include": ["setup/**/*.ts", "runtime/**/*.ts", "tests/**/*.ts", "vercel.ts"],
+  "include": ["setup/**/*.ts", "runtime/**/*.ts", "tests/**/*.ts", "vercel.ts", "hackathon/lib/api-types.d.ts", "hackathon/lib/phase.d.ts", "hackathon/lib/agent-schema.d.ts"],
   "exclude": ["node_modules", "dist", "legacy"]
 }
