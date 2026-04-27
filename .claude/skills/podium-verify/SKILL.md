@@ -9,7 +9,7 @@ Standalone health check for the active Podium role. Re-runnable any time.
 
 ## 1. Boot Check
 
-Run `python -m setup --step verify` and parse the `VERIFY` status block.
+Run `npx tsx setup/verify.ts --mode check` and parse the `VERIFY` status block.
 
 - `BOOT_STATUS: success` → continue.
 - `BOOT_STATUS: failed` → report the `REASON` field; ask if the user wants to switch role (if yes, hand back to `/podium-setup`).
@@ -19,7 +19,7 @@ Run `python -m setup --step verify` and parse the `VERIFY` status block.
 Run:
 
 ```
-python runtime/engine.py --message "In one sentence: who are you and what do you help with?"
+npx tsx runtime/engine.ts --message "In one sentence: who are you and what do you help with?"
 ```
 
 Expect a response of 20–200 chars within 30s.

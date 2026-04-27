@@ -1,5 +1,7 @@
 # Agent Boilerplate Implementation Plan
 
+> **Historical (v0.1).** This plan describes the original Python boilerplate implementation. Podium hard-forked to Node/TypeScript in v0.2 — see `spec/podium-setup-v0.2.md` and `LEGACY.md` for the current shape. References below to `engine.py`, `runtime/*.py`, `python -m setup`, etc. apply to the v0.1 line preserved in `legacy/runtime/`, not the live runtime.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Build a production-ready agent boilerplate with four role overlays (agent architect, assistant, tutor, creator), starting from a forked NanoClaw runtime with LiteLLM provider abstraction.
