@@ -1,11 +1,9 @@
 /**
  * LLMClient interface + ClaudeCodeClient implementation.
  *
- * Port of runtime/llm_client.py.
- *
- * v0.1 shipped ClaudeCodeClient only. Additional providers (Anthropic SDK,
- * LiteLLM, OpenAI, Ollama, OpenRouter) will be dropped in alongside it; all
- * must satisfy the LLMClient interface so the engine stays provider-agnostic.
+ * ClaudeCodeClient ships by default. Additional providers (Anthropic SDK,
+ * LiteLLM, OpenAI, Ollama, OpenRouter) plug in alongside it; all must satisfy
+ * the LLMClient interface so the engine stays provider-agnostic.
  */
 import { spawnSync } from "node:child_process";
 import * as fs from "node:fs";

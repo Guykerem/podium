@@ -1,8 +1,6 @@
 /**
  * Podium Runtime Engine — role loader + message dispatcher.
  *
- * Port of runtime/engine.py. Preserves CLI and boot-summary surface:
- *
  *   npx tsx runtime/engine.ts                           # boot summary
  *   npx tsx runtime/engine.ts --message "hi"            # send one message
  *   npx tsx runtime/engine.ts --message "hi" --dry-run  # print context, no LLM call

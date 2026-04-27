@@ -1,11 +1,9 @@
 /**
- * Verify step (M9).
+ * Verify step.
  *
- * End-to-end health check for the active Podium role. Unlike the legacy
- * Python verify (setup/steps/verify.py), which only confirms that skills were
- * discovered, this version proves that the runtime actually loads the memory
- * seeded during onboarding — the probe's pass/fail criterion is whether the
- * model greets the user by the name captured in
+ * End-to-end health check for the active Podium role. Proves that the runtime
+ * actually loads the memory seeded during onboarding — the probe's pass/fail
+ * criterion is whether the model greets the user by the name captured in
  * roles/<role>/memory/context.md.
  *
  * Two modes:

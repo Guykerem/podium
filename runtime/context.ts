@@ -1,13 +1,12 @@
 /**
  * Assemble a role's context (identity + skills + memory) into a system prompt string.
  *
- * Port of runtime/context.py. Section ordering and headings are preserved so
- * that downstream modules (e.g. verify, onboarding) can continue to grep for
- * the same anchors.
+ * Section ordering and headings are stable so downstream modules (e.g. verify,
+ * onboarding) can grep for the same anchors.
  *
- * v0.2 extension: if `roles/<role>/memory/context.md` exists, its YAML
- * frontmatter is parsed and its markdown body appended under a "Memory"
- * section. The frontmatter keys (name, pronouns, primary_goal, timezone) are
+ * If `roles/<role>/memory/context.md` exists, its YAML frontmatter is parsed
+ * and its markdown body appended under a "Memory" section. The frontmatter
+ * keys (name, pronouns, primary_goal, timezone) are
  * seeded by M5 (onboarding) and must be visible to the LLM on every call.
  */
 import * as fs from "node:fs";
