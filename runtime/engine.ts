@@ -10,8 +10,8 @@ import * as path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parse as parseYaml } from "yaml";
 
-import { assembleRoleContext } from "./context";
-import { ClaudeCodeClient } from "./llm_client";
+import { assembleRoleContext } from "./context.js";
+import { ClaudeCodeClient } from "./llm_client.js";
 
 function moduleDir(): string {
   try {

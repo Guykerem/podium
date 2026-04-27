@@ -18,9 +18,9 @@
 import * as readline from "node:readline";
 import { stdin, stdout } from "node:process";
 
-import { assembleRoleContext } from "./context";
-import { ClaudeCodeClient } from "./llm_client";
-import { resolveActiveRole } from "./engine";
+import { assembleRoleContext } from "./context.js";
+import { ClaudeCodeClient } from "./llm_client.js";
+import { resolveActiveRole } from "./engine.js";
 
 export interface Turn {
   role: "user" | "assistant";
