@@ -16,3 +16,4 @@ dist/
 .package.json.local
 agent/memory/active-role.yaml
 tests/web/fixtures/.cache/
+.superpowers/
