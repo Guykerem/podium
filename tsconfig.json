@@ -15,6 +15,6 @@
     "isolatedModules": true,
     "verbatimModuleSyntax": false
   },
-  "include": ["setup/**/*.ts", "runtime/**/*.ts", "tests/**/*.ts"],
+  "include": ["setup/**/*.ts", "runtime/**/*.ts", "tests/**/*.ts", "vercel.ts"],
   "exclude": ["node_modules", "dist", "legacy"]
 }
