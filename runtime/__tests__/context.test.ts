@@ -15,7 +15,7 @@ import {
   listSkills,
   loadMemory,
   splitFrontmatter,
-} from "../context";
+} from "../context.js";
 
 function mkdirp(p: string): void {
   fs.mkdirSync(p, { recursive: true });

@@ -7,7 +7,7 @@
  */
 import { describe, expect, it } from "vitest";
 
-import { formatTranscript, parseInput, type Turn } from "../repl";
+import { formatTranscript, parseInput, type Turn } from "../repl.js";
 
 describe("parseInput", () => {
   it("classifies empty and whitespace-only input as noop", () => {
