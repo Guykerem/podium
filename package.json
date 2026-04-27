@@ -30,6 +30,7 @@
     "@types/node": "^22.10.0",
     "@types/yauzl": "^2.10.3",
     "@vercel/config": "^0.2.1",
+    "happy-dom": "^15.11.0",
     "jszip": "^3.10.1",
     "tsx": "^4.19.0",
     "typescript": "^5.7.0",
