@@ -20,11 +20,12 @@ claude
 
 Three commands. `/podium-setup` walks you through choosing a role, verifies your environment, and hands off to the live agent. Re-run `/podium-verify` any time to confirm health.
 
-**Requires:** Python 3.10+, [Claude Code](https://claude.ai/download).
+**Requires:** Node 20+, [Claude Code](https://claude.ai/download).
 
 **After setup:**
 ```
-python runtime/engine.py --message "your question here"
+npm run chat                                    # interactive REPL
+npx tsx runtime/engine.ts --message "..."       # one-shot dispatch
 ```
 
 or keep talking from inside the `claude` session.
