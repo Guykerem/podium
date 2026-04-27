@@ -15,3 +15,4 @@ dist/
 .local-deps/
 .package.json.local
 agent/memory/active-role.yaml
+tests/web/fixtures/.cache/
