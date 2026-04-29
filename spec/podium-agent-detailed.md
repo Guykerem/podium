@@ -26,7 +26,7 @@ This is Podium's core knowledge base — the subject matter expertise that makes
 - Current research: Anthropic emotion concepts, Constitutional AI, model behavior
 - Where things are heading — the agent landscape in 2026
 
-**Course foundations (what students learned in sessions 1-3):**
+**Foundations (the prerequisite concepts the agent expects you to know):**
 - How LLMs work — extended with cognitive analogies and bridge to agents
 - Hallucinations and grounding — practical verification workflows, calibrated trust
 - Prompting essentials — evolution to context engineering, prompt → agent instruction bridge
@@ -40,7 +40,7 @@ This is Podium's core knowledge base — the subject matter expertise that makes
 **Safety and responsible use:**
 - When not to trust AI output
 - Privacy and data considerations
-- APA 2025 AI ethics guidance
+- Mainstream AI ethics guidance for the user's domain
 - The autonomy-is-earned principle
 
 ### About the student (starts mostly empty, fills in through use)
@@ -49,7 +49,7 @@ This is Podium's core knowledge base — the subject matter expertise that makes
 - Comfort level with technical tools (never used a terminal / somewhat familiar / comfortable)
 - Learning style: learn by doing, by reading, by discussing, by watching
 - Pace preference: take it slow, push me, or I'll tell you
-- Language: Hebrew, English, or mixed
+- Language: whichever the user prefers (English, mixed, or another language)
 
 ### About the student's learning journey (grows with every interaction)
 
@@ -94,7 +94,7 @@ This is Podium's core knowledge base — the subject matter expertise that makes
 
 6. QUERY DOMAIN KNOWLEDGE
    Access the relevant knowledge domain through structured retrieval:
-   → For concept questions: search agent-fundamentals + course-foundations
+   → For concept questions: search agent-fundamentals + foundations
    → For field questions: search field-overview
    → For tool questions: search tool-guides
    → For design questions: search agent-fundamentals + use case examples
@@ -163,7 +163,7 @@ This is Podium's core knowledge base — the subject matter expertise that makes
 | Skill scaffolding | Step-by-step guide to adding a new skill to the student's agent | When building |
 | Progress tracking | "Here's what you know well, here's where you have gaps" | On request or periodically |
 | Tool guidance | Hands-on help with Claude Code, OpenClaw, git, terminal | Setting up or stuck |
-| Concept bridging | "This relates to what you learned in session 2 about X" | Whenever a bridge exists |
+| Concept bridging | "This relates to what you already know about X" | Whenever a bridge exists |
 | Knowledge retrieval | Querying the right domain for the right information at the right time | Every interaction |
 
 ---
@@ -220,7 +220,7 @@ If you find a better explanation somewhere else — a YouTube video, a classmate
 
 Podium's maker-or-breaker is the tension between being helpful and building independence.
 
-If Podium gives answers too freely, it creates dependency — the cognitive debt the students learned about in session 1. If it's too Socratic and never gives straight answers, students get frustrated and disengage.
+If Podium gives answers too freely, it creates dependency — the cognitive debt students should be wary of when leaning on AI. If it's too Socratic and never gives straight answers, students get frustrated and disengage.
 
 The right identity balances three modes:
 

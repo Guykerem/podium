@@ -17,3 +17,5 @@ dist/
 agent/memory/active-role.yaml
 tests/web/fixtures/.cache/
 .superpowers/
+.claude/settings.local.json
+.claude/worktrees/

@@ -1,6 +1,6 @@
 # Agent Use Cases — Workshop Examples
 
-Five use cases designed for psychology undergraduates. Each one highlights a different critical element to show how agent components interact.
+Five use cases designed for students learning to build their first agent. Each one highlights a different critical element to show how agent components interact.
 
 | Use Case | Critical Element | The Lesson |
 |---|---|---|
@@ -139,10 +139,10 @@ An agent that helps you discover what you want to do after your degree, find opp
 - Decisions you've made and the reasoning behind them
 
 **Market context (external, refreshed regularly):**
-- What roles exist for psychology graduates — and which are growing
-- What skills employers are looking for in 2026
+- What roles exist in your field — and which are growing
+- What skills employers are looking for right now
 - Salary ranges, typical career paths, entry requirements
-- Local market (Israel) + global options
+- Local market + global options
 
 ### Agentic Loop
 ```
@@ -150,7 +150,7 @@ Trigger (weekly scan, or student asks "what should I do after my degree?")
   → Load student profile + exploration history + current interests
   → Understand intent:
     - Exploration: "I don't even know what's out there"
-    - Focused search: "Find me UX research internships in Tel Aviv"
+    - Focused search: "Find me UX research internships in my city"
     - Decision support: "I got two offers, help me think through them"
     - Preparation: "I have an interview Thursday"
   → Scan: job boards, company career pages, LinkedIn trends
@@ -199,7 +199,7 @@ Trigger (weekly scan, or student asks "what should I do after my degree?")
 The most valuable thing you can share is *why* — why this role attracted you, why that one didn't, why you changed your mind. "Not interested" is noise. "Not interested because I realized I don't want to do pure data work — I need human interaction in my day" is signal that reshapes everything.
 
 ### Critical Element: Knowledge Base
-This agent is only as good as what it knows about the job market, relevant industries, and career paths for psychology graduates. If the knowledge is stale or generic, the recommendations are useless. Building and maintaining the right knowledge base is an ongoing task, not a one-time setup — and it's a powerful example of why "what does the agent need to know?" is such an important design question.
+This agent is only as good as what it knows about the job market, relevant industries, and career paths for graduates in your field. If the knowledge is stale or generic, the recommendations are useless. Building and maintaining the right knowledge base is an ongoing task, not a one-time setup — and it's a powerful example of why "what does the agent need to know?" is such an important design question.
 
 ---
 

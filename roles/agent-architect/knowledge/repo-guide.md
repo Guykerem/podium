@@ -9,12 +9,11 @@ A reference for understanding the Podium repository structure.
 | `agent/` | The agent skeleton — identity, skills, knowledge, memory, learning, autonomy |
 | `roles/` | Role overlays — specialized configurations layered on the base agent |
 | `runtime/` | Engine, providers, channels, scheduler — the infrastructure that runs the agent |
-| `lecture/` | The 90-minute guest session — outline, slides, references |
-| `workshop/` | Design templates and guided flows for the hands-on session |
-| `guides/` | Student-facing getting-started material |
-| `demo/` | Live demo scaffold (Podium GUI) |
+| `setup/` | Setup CLI — install, onboarding, role selection, channel/service configuration |
+| `container/` | Optional Docker runtime |
+| `workshop/` | Design templates and example use cases for building your own role |
+| `guides/` | Student-facing getting-started material (e.g. troubleshooting) |
 | `spec/` | Design specs and architecture decisions |
-| `docs/` | Additional documentation |
 
 ## Agent Skeleton Components
 

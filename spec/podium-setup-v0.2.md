@@ -38,7 +38,7 @@ v0.2 fixes that by **hard-forking NanoClaw's installer** and layering Podium's r
 
 ## 4. Target User Journey
 
-A psychology student, first-time cloner, macOS laptop, has `node` and `claude` CLI installed via prior course sessions. Typical install should feel like this:
+A first-time cloner on macOS with `node` and the `claude` CLI already installed. Typical install should feel like this:
 
 ```
 1. git clone podium && cd podium

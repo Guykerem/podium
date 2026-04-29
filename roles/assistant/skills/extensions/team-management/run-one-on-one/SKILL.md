@@ -62,9 +62,9 @@ A 1:1 is a high-leverage conversation that usually gets winged. This skill turns
 Carry-over: shipped Q1 review; still open on promo conversation
 Wins: landed the auth migration ahead of schedule
 Blockers: unclear priority between growth and reliability for Q2
-Decisions: Guy to clarify Q2 priority by Monday
+Decisions: manager to clarify Q2 priority by Monday
 Actions:
-  - guy: write Q2 priority memo (by 2026-04-21)
+  - manager: write Q2 priority memo (by 2026-04-21)
   - maya: draft auth post-mortem (by 2026-04-24)
 ```
 

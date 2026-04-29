@@ -1,6 +1,6 @@
 # Prompting Essentials
 
-You learned the 6-stage framework, Chain-of-Thought, few-shot, task decomposition, and more in session 2. This guide covers what's changed since, what's coming next, and how prompting connects to building agents.
+If you've already met the basics — the 6-stage framework, Chain-of-Thought, few-shot, task decomposition — this guide picks up from there. It covers what's changed in modern prompting, what's coming next, and how prompting connects to building agents.
 
 ## The Big Shift: From Prompting to Context Engineering
 
@@ -32,11 +32,11 @@ This is exactly what you'll be doing when you design agents — defining the con
 ### Still works well
 - **Few-shot examples** (3-5 diverse examples) remain the highest-ROI technique across all models.
 - **Structured formatting** — XML tags for Claude, markdown for GPT. A prompt formatted in XML can outperform markdown by 30% on Claude.
-- **Specificity** — "Be explicit. Be specific. Be structured." (from your session 2) remains the universal foundation.
+- **Specificity** — "Be explicit. Be specific. Be structured." remains the universal foundation.
 
 ### New patterns
 - **Confidence calibration** — "Rate your confidence 1-10" works, but you can now also ask reasoning models to show their uncertainty in-line.
-- **Meta-prompting at scale** — using AI to critique and rewrite prompts (you learned this in session 2) is now a standard production practice. OPRO research showed optimized prompts improve accuracy by 8-50% (Yang et al., 2023).
+- **Meta-prompting at scale** — using AI to critique and rewrite prompts is now a standard production practice. OPRO research showed optimized prompts improve accuracy by 8-50% (Yang et al., 2023).
 
 ## From Prompts to Agent Instructions
 

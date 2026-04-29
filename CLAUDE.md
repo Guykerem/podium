@@ -2,17 +2,14 @@
 
 ## What This Is
 
-Podium is an agent boilerplate — a minimal runtime plus a shared agent skeleton plus pluggable role overlays. It serves three purposes:
+Podium is an agent boilerplate — a minimal runtime plus a shared agent skeleton plus pluggable role overlays. It serves two purposes:
 
-1. **A lecture** — a 90-minute guest session on AI agents for psychology students at Reichman University
-2. **A boilerplate** — clone it, pick a role, personalize, run
-3. **A gift** — students build their own role on top of it across the course
-
-Sister repo: [`podium-site`](https://github.com/Guykerem/podium-site) — the lecture-day website (gallery, editor, voting, dossiers). This repo is just the agent boilerplate.
+1. **A boilerplate** — clone it, pick a role, personalize, run
+2. **A teaching scaffold** — every directory maps to an agent component, so reading the repo is itself a lesson on how agents are built
 
 ## Central Metaphor
 
-The conductor, not the CEO. Inspired by Jacob Collier's orchestra improvisation. Agents are an orchestra you conduct through intent and self-knowledge, not employees you micromanage.
+The conductor, not the CEO. Agents are an orchestra you conduct through intent and self-knowledge, not employees you micromanage.
 
 ## Repo Structure
 
@@ -72,16 +69,13 @@ roles/                         # ROLE OVERLAYS — each is self-contained
     schedule.yaml              #     Role-specific cron jobs
 onboarding/                    # Shared onboarding runner (role picks up its questions)
 workshop/                      # Design template for building your own role
-lecture/                       # The 90-minute session
-  outline/                     #   Beat-by-beat lecture structure
-  references/                  #   Source material and research links
 spec/                          # Architecture and design decisions
 ```
 
 ## Design Principles
 
-- The structure IS the lesson — each directory maps to an agent component from the lecture
-- Built for psychology students with no prior coding experience
+- The structure IS the lesson — each directory maps to an agent component
+- Built so that someone with no prior coding experience can clone, personalize, and run
 - Every technical concept maps to a cognitive analogy
 - Skills are both functional AND educational — using the skill teaches the concept
 - Autonomy is earned, not assumed — starts at level 1
@@ -90,10 +84,9 @@ spec/                          # Architecture and design decisions
 
 ## Key References
 
-- Spec: `spec/podium-spec.md`
 - Agent program: `agent/program.md`
 - Runtime engine: `runtime/engine.ts`
-- Lecture outline: `lecture/outline/conductors-arc.md`
+- Setup design: `spec/podium-setup-v0.2.md`
 - Workshop template: `workshop/design-template.md`
 - Example role: `roles/agent-architect/` (the default, itself a worked example)
 

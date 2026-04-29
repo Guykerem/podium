@@ -172,7 +172,7 @@ To fully wipe the repo (including node_modules and any unused deps), run:
 
 ## 6. Safety rails
 
-- **Never** touch: `roles/<role>/identity/`, `roles/<role>/skills/`, `roles/<role>/knowledge/`, `roles/<role>/onboarding/`, `roles/<role>/role.yaml`, `agent/identity/`, `agent/skills/`, `agent/knowledge/`, `agent/learning/`, `agent/program.md`, `agent/autonomy.yaml`, `agent/memory/context.md` (that is shipped template, not per-role generated memory), `spec/`, `runtime/`, `setup/`, `container/`, `.claude/skills/`, `tests/`, `lecture/`, `workshop/`.
+- **Never** touch: `roles/<role>/identity/`, `roles/<role>/skills/`, `roles/<role>/knowledge/`, `roles/<role>/onboarding/`, `roles/<role>/role.yaml`, `agent/identity/`, `agent/skills/`, `agent/knowledge/`, `agent/learning/`, `agent/program.md`, `agent/autonomy.yaml`, `agent/memory/context.md` (that is shipped template, not per-role generated memory), `spec/`, `runtime/`, `setup/`, `container/`, `.claude/skills/`, `tests/`, `workshop/`.
 - **Never** run `rm -rf /`, `rm -rf ~`, or any command whose target is not a specific Podium-generated artifact.
 - **Never** run `git reset --hard`, `git clean -fd`, or any operation that would clobber user work outside the known artifact list.
 - Operate only within the repo root. Resolve the repo root via `git rev-parse --show-toplevel` before running any destructive command.

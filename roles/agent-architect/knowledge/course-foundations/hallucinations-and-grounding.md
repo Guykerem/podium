@@ -1,6 +1,6 @@
 # Hallucinations and Grounding
 
-You learned about hallucinations in session 1 — what they are, why they happen, and how RAG helps. This guide goes deeper: how the field is fighting hallucinations in 2026, how to build verification habits, and why this matters especially for psychology.
+If you already know the basics of hallucinations — what they are, why they happen, and how RAG helps — this guide goes deeper: how the field is fighting hallucinations in 2026, how to build verification habits, and why this matters especially in fields where evidence quality is non-negotiable.
 
 ## The Hard Truth
 

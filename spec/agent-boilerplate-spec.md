@@ -43,8 +43,6 @@ Configuration:
 ```
 podium/
   spec/                          # Design specs (this file lives here)
-  lecture/                       # The 90-minute session
-  demo/                          # Live demo scaffold (Podium GUI)
   workshop/                      # Design templates and guided flows
   guides/                        # Student-facing getting-started material
 

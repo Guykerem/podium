@@ -1,14 +1,14 @@
 # Biases, Cognitive Debt, and Human Agency
 
-You covered AI biases and cognitive debt in session 1 — the risks of over-reliance, the importance of maintaining agency. This guide deepens that picture with the latest research and adds a dimension the course may not have reached yet: the sycophancy problem, and how to stay sharp while working alongside AI.
+If you already know the basics of AI biases and cognitive debt — the risks of over-reliance, the importance of maintaining agency — this guide deepens that picture with the latest research and adds a dimension worth examining: the sycophancy problem, and how to stay sharp while working alongside AI.
 
 ## Cognitive Debt — The Latest Evidence
 
 The term captures something real: when you delegate cognitive work to AI, the underlying skills can atrophy. The research is getting clearer.
 
-**Bastani et al. (2025, PNAS)** — the study on your reading list — showed that ~1,000 high school students performed worse on exams after AI tools were removed. The effect was significant: short-term performance gains from AI masked long-term skill atrophy.
+**Bastani et al. (2025, PNAS)** showed that ~1,000 high school students performed worse on exams after AI tools were removed. The effect was significant: short-term performance gains from AI masked long-term skill atrophy.
 
-**Kosmyna et al. (2025, MIT)** — also on your reading list — used EEG to measure brain connectivity during essay writing with and without ChatGPT. LLM users showed 55% reduced brain connectivity. The neural infrastructure for deep writing was literally less engaged when AI was doing the heavy lifting.
+**Kosmyna et al. (2025, MIT)** used EEG to measure brain connectivity during essay writing with and without ChatGPT. LLM users showed 55% reduced brain connectivity. The neural infrastructure for deep writing was literally less engaged when AI was doing the heavy lifting.
 
 **The key variable is tool design.** Bastani et al. found that "guardrailed" AI tools (which scaffold learning rather than giving answers) produced better retention than unguarded tools. This maps directly to Podium's approach: autonomy level 1 (training wheels) scaffolds your learning; level 3 (conductor mode) assumes you've built the skill.
 
